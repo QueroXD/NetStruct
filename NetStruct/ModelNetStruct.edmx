@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NetStructModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoriaTipo">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clasifica">
+          <Key>
+            <PropertyRef Name="idInfraestructura" />
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idInfraestructura" Type="int" Nullable="false" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Continente">
+          <Key>
+            <PropertyRef Name="idContinente" />
+          </Key>
+          <Property Name="idContinente" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GaleriaDeImagenes">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="int" Nullable="false" />
+          <Property Name="Imagen" Type="varchar(max)" Nullable="false" />
+          <Property Name="idInfraestructura" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Infraestructura">
+          <Key>
+            <PropertyRef Name="idInfraestructura" />
+          </Key>
+          <Property Name="idInfraestructura" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Reseña" Type="varchar(max)" />
+          <Property Name="Horario" Type="varchar" MaxLength="100" />
+          <Property Name="TelefonoContacto" Type="varchar" MaxLength="20" />
+          <Property Name="EmailContacto" Type="varchar" MaxLength="100" />
+          <Property Name="MiniaturaWeb" Type="varchar(max)" />
+          <Property Name="Valoracion" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="idCiudad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idContinente" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Ciudades__idPais__3C69FB99">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Clasifica__idCat__44FF419A">
+          <End Role="CategoriaTipo" Type="Self.CategoriaTipo" Multiplicity="1" />
+          <End Role="Clasifica" Type="Self.Clasifica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaTipo">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Clasifica">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Clasifica__idInf__440B1D61">
+          <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="1" />
+          <End Role="Clasifica" Type="Self.Clasifica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Infraestructura">
+              <PropertyRef Name="idInfraestructura" />
+            </Principal>
+            <Dependent Role="Clasifica">
+              <PropertyRef Name="idInfraestructura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GaleriaDe__idInf__47DBAE45">
+          <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="1" />
+          <End Role="GaleriaDeImagenes" Type="Self.GaleriaDeImagenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Infraestructura">
+              <PropertyRef Name="idInfraestructura" />
+            </Principal>
+            <Dependent Role="GaleriaDeImagenes">
+              <PropertyRef Name="idInfraestructura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Infraestr__idCiu__3F466844">
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="1" />
+          <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="Infraestructura">
+              <PropertyRef Name="idCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paises__idContin__398D8EEE">
+          <End Role="Continente" Type="Self.Continente" Multiplicity="1" />
+          <End Role="Paises" Type="Self.Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Continente">
+              <PropertyRef Name="idContinente" />
+            </Principal>
+            <Dependent Role="Paises">
+              <PropertyRef Name="idContinente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NetStructModelStoreContainer">
+          <EntitySet Name="CategoriaTipo" EntityType="Self.CategoriaTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudades" EntityType="Self.Ciudades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clasifica" EntityType="Self.Clasifica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Continente" EntityType="Self.Continente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GaleriaDeImagenes" EntityType="Self.GaleriaDeImagenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Infraestructura" EntityType="Self.Infraestructura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Ciudades__idPais__3C69FB99" Association="Self.FK__Ciudades__idPais__3C69FB99">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Clasifica__idCat__44FF419A" Association="Self.FK__Clasifica__idCat__44FF419A">
+            <End Role="CategoriaTipo" EntitySet="CategoriaTipo" />
+            <End Role="Clasifica" EntitySet="Clasifica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Clasifica__idInf__440B1D61" Association="Self.FK__Clasifica__idInf__440B1D61">
+            <End Role="Infraestructura" EntitySet="Infraestructura" />
+            <End Role="Clasifica" EntitySet="Clasifica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GaleriaDe__idInf__47DBAE45" Association="Self.FK__GaleriaDe__idInf__47DBAE45">
+            <End Role="Infraestructura" EntitySet="Infraestructura" />
+            <End Role="GaleriaDeImagenes" EntitySet="GaleriaDeImagenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Infraestr__idCiu__3F466844" Association="Self.FK__Infraestr__idCiu__3F466844">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Infraestructura" EntitySet="Infraestructura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paises__idContin__398D8EEE" Association="Self.FK__Paises__idContin__398D8EEE">
+            <End Role="Continente" EntitySet="Continente" />
+            <End Role="Paises" EntitySet="Paises" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NetStructModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CategoriaTipo">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Infraestructura" Relationship="Self.Clasifica" FromRole="CategoriaTipo" ToRole="Infraestructura" />
+        </EntityType>
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Paises" Relationship="Self.FK__Ciudades__idPais__3C69FB99" FromRole="Ciudades" ToRole="Paises" />
+          <NavigationProperty Name="Infraestructura" Relationship="Self.FK__Infraestr__idCiu__3F466844" FromRole="Ciudades" ToRole="Infraestructura" />
+        </EntityType>
+        <EntityType Name="Continente">
+          <Key>
+            <PropertyRef Name="idContinente" />
+          </Key>
+          <Property Name="idContinente" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Paises" Relationship="Self.FK__Paises__idContin__398D8EEE" FromRole="Continente" ToRole="Paises" />
+        </EntityType>
+        <EntityType Name="GaleriaDeImagenes">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="Int32" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idInfraestructura" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Infraestructura" Relationship="Self.FK__GaleriaDe__idInf__47DBAE45" FromRole="GaleriaDeImagenes" ToRole="Infraestructura" />
+        </EntityType>
+        <EntityType Name="Infraestructura">
+          <Key>
+            <PropertyRef Name="idInfraestructura" />
+          </Key>
+          <Property Name="idInfraestructura" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoContacto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailContacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MiniaturaWeb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Valoracion" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="idCiudad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudades" Relationship="Self.FK__Infraestr__idCiu__3F466844" FromRole="Infraestructura" ToRole="Ciudades" />
+          <NavigationProperty Name="GaleriaDeImagenes" Relationship="Self.FK__GaleriaDe__idInf__47DBAE45" FromRole="Infraestructura" ToRole="GaleriaDeImagenes" />
+          <NavigationProperty Name="CategoriaTipo" Relationship="Self.Clasifica" FromRole="Infraestructura" ToRole="CategoriaTipo" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idContinente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudades" Relationship="Self.FK__Ciudades__idPais__3C69FB99" FromRole="Paises" ToRole="Ciudades" />
+          <NavigationProperty Name="Continente" Relationship="Self.FK__Paises__idContin__398D8EEE" FromRole="Paises" ToRole="Continente" />
+        </EntityType>
+        <Association Name="FK__Ciudades__idPais__3C69FB99">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Infraestr__idCiu__3F466844">
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="1" />
+          <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="Infraestructura">
+              <PropertyRef Name="idCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paises__idContin__398D8EEE">
+          <End Role="Continente" Type="Self.Continente" Multiplicity="1" />
+          <End Role="Paises" Type="Self.Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Continente">
+              <PropertyRef Name="idContinente" />
+            </Principal>
+            <Dependent Role="Paises">
+              <PropertyRef Name="idContinente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GaleriaDe__idInf__47DBAE45">
+          <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="1" />
+          <End Role="GaleriaDeImagenes" Type="Self.GaleriaDeImagenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Infraestructura">
+              <PropertyRef Name="idInfraestructura" />
+            </Principal>
+            <Dependent Role="GaleriaDeImagenes">
+              <PropertyRef Name="idInfraestructura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Clasifica">
+          <End Role="CategoriaTipo" Type="Self.CategoriaTipo" Multiplicity="*" />
+          <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="NetStructEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategoriaTipo" EntityType="Self.CategoriaTipo" />
+          <EntitySet Name="Ciudades" EntityType="Self.Ciudades" />
+          <EntitySet Name="Continente" EntityType="Self.Continente" />
+          <EntitySet Name="GaleriaDeImagenes" EntityType="Self.GaleriaDeImagenes" />
+          <EntitySet Name="Infraestructura" EntityType="Self.Infraestructura" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" />
+          <AssociationSet Name="FK__Ciudades__idPais__3C69FB99" Association="Self.FK__Ciudades__idPais__3C69FB99">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Infraestr__idCiu__3F466844" Association="Self.FK__Infraestr__idCiu__3F466844">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Infraestructura" EntitySet="Infraestructura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paises__idContin__398D8EEE" Association="Self.FK__Paises__idContin__398D8EEE">
+            <End Role="Continente" EntitySet="Continente" />
+            <End Role="Paises" EntitySet="Paises" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GaleriaDe__idInf__47DBAE45" Association="Self.FK__GaleriaDe__idInf__47DBAE45">
+            <End Role="Infraestructura" EntitySet="Infraestructura" />
+            <End Role="GaleriaDeImagenes" EntitySet="GaleriaDeImagenes" />
+          </AssociationSet>
+          <AssociationSet Name="Clasifica" Association="Self.Clasifica">
+            <End Role="CategoriaTipo" EntitySet="CategoriaTipo" />
+            <End Role="Infraestructura" EntitySet="Infraestructura" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NetStructModelStoreContainer" CdmEntityContainer="NetStructEntities">
+          <EntitySetMapping Name="CategoriaTipo">
+            <EntityTypeMapping TypeName="NetStructModel.CategoriaTipo">
+              <MappingFragment StoreEntitySet="CategoriaTipo">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ciudades">
+            <EntityTypeMapping TypeName="NetStructModel.Ciudades">
+              <MappingFragment StoreEntitySet="Ciudades">
+                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Continente">
+            <EntityTypeMapping TypeName="NetStructModel.Continente">
+              <MappingFragment StoreEntitySet="Continente">
+                <ScalarProperty Name="idContinente" ColumnName="idContinente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GaleriaDeImagenes">
+            <EntityTypeMapping TypeName="NetStructModel.GaleriaDeImagenes">
+              <MappingFragment StoreEntitySet="GaleriaDeImagenes">
+                <ScalarProperty Name="idImagen" ColumnName="idImagen" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="idInfraestructura" ColumnName="idInfraestructura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infraestructura">
+            <EntityTypeMapping TypeName="NetStructModel.Infraestructura">
+              <MappingFragment StoreEntitySet="Infraestructura">
+                <ScalarProperty Name="idInfraestructura" ColumnName="idInfraestructura" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Reseña" ColumnName="Reseña" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
+                <ScalarProperty Name="EmailContacto" ColumnName="EmailContacto" />
+                <ScalarProperty Name="MiniaturaWeb" ColumnName="MiniaturaWeb" />
+                <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="NetStructModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idContinente" ColumnName="idContinente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Clasifica" TypeName="NetStructModel.Clasifica" StoreEntitySet="Clasifica">
+            <EndProperty Name="CategoriaTipo">
+              <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+            </EndProperty>
+            <EndProperty Name="Infraestructura">
+              <ScalarProperty Name="idInfraestructura" ColumnName="idInfraestructura" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
