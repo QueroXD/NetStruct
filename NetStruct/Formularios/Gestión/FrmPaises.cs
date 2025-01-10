@@ -12,9 +12,76 @@ namespace NetStruct.Formularios.Gestión
 {
     public partial class FrmPaises : Form
     {
-        public FrmPaises()
+        private NetStructEntities netStructContext {  get; set; }
+        
+        Boolean bFirst = true;
+
+
+        public FrmPaises(NetStructEntities xNetStruct)
         {
             InitializeComponent();
+            netStructContext = xNetStruct;
+        }
+
+        private void FrmPaises_Load(object sender, EventArgs e)
+        {
+            omplirComboContinents();
+            
+            if (cbContinents.SelectedIndex != -1)
+            {
+                getDades((int)cbContinents.SelectedValue);
+            }
+
+            iniDGrid();
+            bFirst = false;
+        }
+
+        private void cbContinents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!bFirst && cbContinents.SelectedIndex != null)
+            {
+                getDades((int)cbContinents.SelectedValue);
+            }
+        }
+
+        private void omplirComboContinents()
+        {
+            var qryContinents = from c in netStructContext.Continente
+                                orderby c.idContinente
+                                select new
+                                {
+                                    id = c.idContinente,
+                                    nom = c.Nombre
+                                };
+            cbContinents.DataSource = qryContinents.ToList();
+            cbContinents.DisplayMember = "nom";
+            cbContinents.ValueMember = "id";
+            cbContinents.SelectedIndex = 0;
+        }
+
+        private void getDades(int idContinent)
+        {
+            var qryPaises = from c in netStructContext.Continente
+                            join p in netStructContext.Paises
+                            on c.idContinente equals p.idContinente
+                            where c.idContinente == idContinent
+                            orderby c.idContinente
+                            select new
+                            {
+                                nom = p.Nombre
+                            };
+
+            dgDadesPaises.DataSource = qryPaises.ToList();
+        }
+
+        private void iniDGrid()
+        {
+            dgDadesPaises.Columns["nom"].HeaderText = "Pais";
+        }
+
+        private void FrmPaises_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ((FrmMain)this.MdiParent).tancarForm(this);
         }
     }
 }

@@ -77,6 +77,7 @@
             this.paisesToolStripMenuItem.Name = "paisesToolStripMenuItem";
             this.paisesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.paisesToolStripMenuItem.Text = "Paises";
+            this.paisesToolStripMenuItem.Click += new System.EventHandler(this.paisesToolStripMenuItem_Click);
             // 
             // ciudadesToolStripMenuItem
             // 
