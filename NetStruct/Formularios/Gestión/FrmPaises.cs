@@ -16,6 +16,7 @@ namespace NetStruct.Formularios.Gestión
         
         Boolean bFirst = true;
 
+        FrmAMBPaises fAMBPaises = null;
 
         public FrmPaises(NetStructEntities xNetStruct)
         {
@@ -82,6 +83,38 @@ namespace NetStruct.Formularios.Gestión
         private void FrmPaises_FormClosing(object sender, FormClosingEventArgs e)
         {
             ((FrmMain)this.MdiParent).tancarForm(this);
+        }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            fAMBPaises = new FrmAMBPaises('A', netStructContext);
+            fAMBPaises.ShowDialog();
+
+            fAMBPaises = null;
+        }
+
+        private void btRemove_Click(object sender, EventArgs e)
+        {
+            if (dgDadesPaises.Rows.Count > 0)
+            {
+                fAMBPaises = new FrmAMBPaises('B', netStructContext);
+
+                fAMBPaises.pais = dgDadesPaises.SelectedRows[0].Cells["nom"].Value.ToString().Trim();
+                fAMBPaises.ShowDialog();
+                fAMBPaises = null;
+            }
+            else
+            {
+                MessageBox.Show("No has seleccionat cap fila", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgDadesPaises_DoubleClick(object sender, EventArgs e)
+        {
+            fAMBPaises = new FrmAMBPaises('M', netStructContext);
+            fAMBPaises.pais = dgDadesPaises.SelectedRows[0].Cells["nom"].Value.ToString().Trim();
+            fAMBPaises.ShowDialog();
+            fAMBPaises = null;
         }
     }
 }

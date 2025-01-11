@@ -47,6 +47,7 @@
             this.dgDadesPaises.RowTemplate.Height = 24;
             this.dgDadesPaises.Size = new System.Drawing.Size(493, 338);
             this.dgDadesPaises.TabIndex = 0;
+            this.dgDadesPaises.DoubleClick += new System.EventHandler(this.dgDadesPaises_DoubleClick);
             // 
             // lbContinents
             // 
@@ -79,6 +80,7 @@
             this.btAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btAdd.TabIndex = 11;
             this.btAdd.TabStop = false;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // btRemove
             // 
@@ -89,6 +91,7 @@
             this.btRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btRemove.TabIndex = 12;
             this.btRemove.TabStop = false;
+            this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
             // 
             // FrmPaises
             // 

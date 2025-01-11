@@ -76,6 +76,12 @@
     <Compile Include="Formularios\FrmGaleria.Designer.cs">
       <DependentUpon>FrmGaleria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Gestión\FrmAMBPaises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmAMBPaises.Designer.cs">
+      <DependentUpon>FrmAMBPaises.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Gestión\FrmPaises.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\Gestión\FrmAMBPaises.resx">
+      <DependentUpon>FrmAMBPaises.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestión\FrmPaises.resx">
       <DependentUpon>FrmPaises.cs</DependentUpon>
     </EmbeddedResource>
