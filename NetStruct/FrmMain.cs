@@ -13,13 +13,19 @@ namespace NetStruct
 {
     public partial class FrmMain : Form
     {
-        private NetStructEntities netStructContext {  get; set; } = new NetStructEntities();
+        private NetStructEntities netStructContext { get; set; } = new NetStructEntities();
 
         FrmPaises paises = null;
+        FrmCiudades ciudades = null;
 
         public FrmMain()
         {
             InitializeComponent();
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+        
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,6 +72,19 @@ namespace NetStruct
         public void tancarForm(Form xform)
         {
             xform = null;
+        }
+
+        private void ciudadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String xnom = "Ciudades";
+
+            if (!(ja_esta_obert(xnom)))
+            {
+                ciudades = new FrmCiudades(netStructContext);
+                ciudades.Name = xnom;
+                ciudades.MdiParent = this;
+                ciudades.Show();
+            }
         }
     }
 }

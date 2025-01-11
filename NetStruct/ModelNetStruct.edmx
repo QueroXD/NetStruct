@@ -9,14 +9,14 @@
           <Key>
             <PropertyRef Name="idCategoria" />
           </Key>
-          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Ciudades">
           <Key>
             <PropertyRef Name="idCiudad" />
           </Key>
-          <Property Name="idCiudad" Type="int" Nullable="false" />
+          <Property Name="idCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="idPais" Type="int" Nullable="false" />
         </EntityType>
@@ -32,14 +32,14 @@
           <Key>
             <PropertyRef Name="idContinente" />
           </Key>
-          <Property Name="idContinente" Type="int" Nullable="false" />
+          <Property Name="idContinente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="GaleriaDeImagenes">
           <Key>
             <PropertyRef Name="idImagen" />
           </Key>
-          <Property Name="idImagen" Type="int" Nullable="false" />
+          <Property Name="idImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Imagen" Type="varchar(max)" Nullable="false" />
           <Property Name="idInfraestructura" Type="int" Nullable="false" />
         </EntityType>
@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="idInfraestructura" />
           </Key>
-          <Property Name="idInfraestructura" Type="int" Nullable="false" />
+          <Property Name="idInfraestructura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Reseña" Type="varchar(max)" />
@@ -62,7 +62,7 @@
           <Key>
             <PropertyRef Name="idPais" />
           </Key>
-          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="idPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="idContinente" Type="int" Nullable="false" />
         </EntityType>
@@ -78,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Clasifica__idCat__44FF419A">
+        <Association Name="FK__Clasifica__idCat__47DBAE45">
           <End Role="CategoriaTipo" Type="Self.CategoriaTipo" Multiplicity="1" />
           <End Role="Clasifica" Type="Self.Clasifica" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Clasifica__idInf__440B1D61">
+        <Association Name="FK__Clasifica__idInf__46E78A0C">
           <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="1" />
           <End Role="Clasifica" Type="Self.Clasifica" Multiplicity="*" />
           <ReferentialConstraint>
@@ -102,7 +102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GaleriaDe__idInf__47DBAE45">
+        <Association Name="FK__GaleriaDe__idInf__440B1D61">
           <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="1" />
           <End Role="GaleriaDeImagenes" Type="Self.GaleriaDeImagenes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,15 +150,15 @@
             <End Role="Paises" EntitySet="Paises" />
             <End Role="Ciudades" EntitySet="Ciudades" />
           </AssociationSet>
-          <AssociationSet Name="FK__Clasifica__idCat__44FF419A" Association="Self.FK__Clasifica__idCat__44FF419A">
+          <AssociationSet Name="FK__Clasifica__idCat__47DBAE45" Association="Self.FK__Clasifica__idCat__47DBAE45">
             <End Role="CategoriaTipo" EntitySet="CategoriaTipo" />
             <End Role="Clasifica" EntitySet="Clasifica" />
           </AssociationSet>
-          <AssociationSet Name="FK__Clasifica__idInf__440B1D61" Association="Self.FK__Clasifica__idInf__440B1D61">
+          <AssociationSet Name="FK__Clasifica__idInf__46E78A0C" Association="Self.FK__Clasifica__idInf__46E78A0C">
             <End Role="Infraestructura" EntitySet="Infraestructura" />
             <End Role="Clasifica" EntitySet="Clasifica" />
           </AssociationSet>
-          <AssociationSet Name="FK__GaleriaDe__idInf__47DBAE45" Association="Self.FK__GaleriaDe__idInf__47DBAE45">
+          <AssociationSet Name="FK__GaleriaDe__idInf__440B1D61" Association="Self.FK__GaleriaDe__idInf__440B1D61">
             <End Role="Infraestructura" EntitySet="Infraestructura" />
             <End Role="GaleriaDeImagenes" EntitySet="GaleriaDeImagenes" />
           </AssociationSet>
@@ -180,7 +180,7 @@
           <Key>
             <PropertyRef Name="idCategoria" />
           </Key>
-          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Infraestructura" Relationship="Self.Clasifica" FromRole="CategoriaTipo" ToRole="Infraestructura" />
         </EntityType>
@@ -188,7 +188,7 @@
           <Key>
             <PropertyRef Name="idCiudad" />
           </Key>
-          <Property Name="idCiudad" Type="Int32" Nullable="false" />
+          <Property Name="idCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idPais" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Paises" Relationship="Self.FK__Ciudades__idPais__3C69FB99" FromRole="Ciudades" ToRole="Paises" />
@@ -198,7 +198,7 @@
           <Key>
             <PropertyRef Name="idContinente" />
           </Key>
-          <Property Name="idContinente" Type="Int32" Nullable="false" />
+          <Property Name="idContinente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Paises" Relationship="Self.FK__Paises__idContin__398D8EEE" FromRole="Continente" ToRole="Paises" />
         </EntityType>
@@ -206,16 +206,16 @@
           <Key>
             <PropertyRef Name="idImagen" />
           </Key>
-          <Property Name="idImagen" Type="Int32" Nullable="false" />
+          <Property Name="idImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idInfraestructura" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Infraestructura" Relationship="Self.FK__GaleriaDe__idInf__47DBAE45" FromRole="GaleriaDeImagenes" ToRole="Infraestructura" />
+          <NavigationProperty Name="Infraestructura" Relationship="Self.FK__GaleriaDe__idInf__440B1D61" FromRole="GaleriaDeImagenes" ToRole="Infraestructura" />
         </EntityType>
         <EntityType Name="Infraestructura">
           <Key>
             <PropertyRef Name="idInfraestructura" />
           </Key>
-          <Property Name="idInfraestructura" Type="Int32" Nullable="false" />
+          <Property Name="idInfraestructura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Reseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -226,14 +226,14 @@
           <Property Name="Valoracion" Type="Decimal" Precision="3" Scale="2" />
           <Property Name="idCiudad" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ciudades" Relationship="Self.FK__Infraestr__idCiu__3F466844" FromRole="Infraestructura" ToRole="Ciudades" />
-          <NavigationProperty Name="GaleriaDeImagenes" Relationship="Self.FK__GaleriaDe__idInf__47DBAE45" FromRole="Infraestructura" ToRole="GaleriaDeImagenes" />
+          <NavigationProperty Name="GaleriaDeImagenes" Relationship="Self.FK__GaleriaDe__idInf__440B1D61" FromRole="Infraestructura" ToRole="GaleriaDeImagenes" />
           <NavigationProperty Name="CategoriaTipo" Relationship="Self.Clasifica" FromRole="Infraestructura" ToRole="CategoriaTipo" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
             <PropertyRef Name="idPais" />
           </Key>
-          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="idPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idContinente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ciudades" Relationship="Self.FK__Ciudades__idPais__3C69FB99" FromRole="Paises" ToRole="Ciudades" />
@@ -275,7 +275,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GaleriaDe__idInf__47DBAE45">
+        <Association Name="FK__GaleriaDe__idInf__440B1D61">
           <End Role="Infraestructura" Type="Self.Infraestructura" Multiplicity="1" />
           <End Role="GaleriaDeImagenes" Type="Self.GaleriaDeImagenes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -310,7 +310,7 @@
             <End Role="Continente" EntitySet="Continente" />
             <End Role="Paises" EntitySet="Paises" />
           </AssociationSet>
-          <AssociationSet Name="FK__GaleriaDe__idInf__47DBAE45" Association="Self.FK__GaleriaDe__idInf__47DBAE45">
+          <AssociationSet Name="FK__GaleriaDe__idInf__440B1D61" Association="Self.FK__GaleriaDe__idInf__440B1D61">
             <End Role="Infraestructura" EntitySet="Infraestructura" />
             <End Role="GaleriaDeImagenes" EntitySet="GaleriaDeImagenes" />
           </AssociationSet>

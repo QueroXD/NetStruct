@@ -16,5 +16,10 @@ namespace NetStruct.Formularios
         {
             InitializeComponent();
         }
+
+        private void FrmGaleria_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
