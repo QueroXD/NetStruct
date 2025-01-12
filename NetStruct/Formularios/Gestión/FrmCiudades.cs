@@ -40,10 +40,9 @@ namespace NetStruct.Formularios.Gestión
 
             getDades();
 
-            // refresquem el datagridview
             if (fAMBCiudades.id != "")
             {
-                seleccionarFila(fAMBCiudades.id);         // ens hem d'assegurar que, al fer l'alta, posem tbId.Text a la propietat pública id
+                seleccionarFila(fAMBCiudades.id);
             }
             fAMBCiudades = null;
         }
@@ -66,26 +65,46 @@ namespace NetStruct.Formularios.Gestión
             }
             else
             {
-                MessageBox.Show("No has seleccionat cap fila", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No has seleccionado ninguna fila", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dgDadesCiudades_DoubleClick(object sender, EventArgs e)
+        {
+            fAMBCiudades = new FrmAMBCiudades('M', NetStructContext);
+
+            fAMBCiudades.id = dgDadesCiudades.SelectedRows[0].Cells["id"].Value.ToString();
+            fAMBCiudades.nombre = dgDadesCiudades.SelectedRows[0].Cells["ciudad"].Value.ToString();
+            fAMBCiudades.idPais = (int)dgDadesCiudades.SelectedRows[0].Cells["idPais"].Value;
+
+            fAMBCiudades.ShowDialog();
+
+            getDades();
+
+            if (fAMBCiudades.id != "")
+            {
+                getDades();
+                seleccionarFila(fAMBCiudades.id);
+            }
+
+            fAMBCiudades = null;
         }
 
         private void getDades()
         {
-            // declarem una consulta dels Territoris de la Regió seleccionada
             var qryCiudades = from c in NetStructContext.Ciudades
                               join p in NetStructContext.Paises on c.idPais equals p.idPais
                               join co in NetStructContext.Continente on p.idContinente equals co.idContinente
-                              orderby c.idCiudad
+                              orderby c.idPais
                               select new
                               {
                                   id = c.idCiudad,
                                   ciudad = c.Nombre,
                                   pais = p.Nombre,
-                                  continente = co.Nombre
+                                  continente = co.Nombre,
+                                  idPais = p.idPais
                               };
 
-            // omplim el datagridview
             dgDadesCiudades.DataSource = qryCiudades.ToList();
         }
 
@@ -95,6 +114,7 @@ namespace NetStruct.Formularios.Gestión
             dgDadesCiudades.Columns["pais"].HeaderText = "País";
             dgDadesCiudades.Columns["continente"].HeaderText = "Continente";
             dgDadesCiudades.Columns["id"].Visible = false;
+            dgDadesCiudades.Columns["idPais"].Visible = false;
         }
 
         private void seleccionarFila(string id)
@@ -110,7 +130,7 @@ namespace NetStruct.Formularios.Gestión
             if (dgDadesCiudades.Rows.Count > 0)
             {
                 dgDadesCiudades.Rows[i].Selected = true;
-                dgDadesCiudades.FirstDisplayedScrollingRowIndex = i; // Desplaça el DataGridView a la fila seleccionada
+                dgDadesCiudades.FirstDisplayedScrollingRowIndex = i;
             }
         }
     }

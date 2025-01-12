@@ -76,6 +76,12 @@
     <Compile Include="Formularios\FrmGaleria.Designer.cs">
       <DependentUpon>FrmGaleria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Gestión\FrmABMCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmABMCategorias.Designer.cs">
+      <DependentUpon>FrmABMCategorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Gestión\FrmAMBCiudades.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,11 +94,23 @@
     <Compile Include="Formularios\Gestión\FrmAMBPaises.Designer.cs">
       <DependentUpon>FrmAMBPaises.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Gestión\FrmCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmCategorias.Designer.cs">
+      <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Gestión\FrmCiudades.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Gestión\FrmCiudades.Designer.cs">
       <DependentUpon>FrmCiudades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmInfraestructuras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmInfraestructuras.Designer.cs">
+      <DependentUpon>FrmInfraestructuras.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Gestión\FrmPaises.cs">
       <SubType>Form</SubType>
@@ -135,14 +153,23 @@
     <EmbeddedResource Include="Formularios\FrmGaleria.resx">
       <DependentUpon>FrmGaleria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Gestión\FrmABMCategorias.resx">
+      <DependentUpon>FrmABMCategorias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestión\FrmAMBCiudades.resx">
       <DependentUpon>FrmAMBCiudades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestión\FrmAMBPaises.resx">
       <DependentUpon>FrmAMBPaises.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Gestión\FrmCategorias.resx">
+      <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestión\FrmCiudades.resx">
       <DependentUpon>FrmCiudades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Gestión\FrmInfraestructuras.resx">
+      <DependentUpon>FrmInfraestructuras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestión\FrmPaises.resx">
       <DependentUpon>FrmPaises.cs</DependentUpon>

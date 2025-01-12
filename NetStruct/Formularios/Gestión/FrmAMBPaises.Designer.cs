@@ -41,20 +41,22 @@
             this.lbPais.AutoSize = true;
             this.lbPais.BackColor = System.Drawing.Color.SaddleBrown;
             this.lbPais.ForeColor = System.Drawing.Color.White;
-            this.lbPais.Location = new System.Drawing.Point(12, 23);
-            this.lbPais.MinimumSize = new System.Drawing.Size(100, 0);
+            this.lbPais.Location = new System.Drawing.Point(15, 18);
+            this.lbPais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbPais.MinimumSize = new System.Drawing.Size(138, 0);
             this.lbPais.Name = "lbPais";
-            this.lbPais.Padding = new System.Windows.Forms.Padding(3);
-            this.lbPais.Size = new System.Drawing.Size(100, 22);
+            this.lbPais.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.lbPais.Size = new System.Drawing.Size(138, 28);
             this.lbPais.TabIndex = 18;
             this.lbPais.Text = "Pais";
             // 
             // tbPais
             // 
-            this.tbPais.Location = new System.Drawing.Point(118, 23);
+            this.tbPais.Location = new System.Drawing.Point(160, 18);
+            this.tbPais.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbPais.MaxLength = 50;
             this.tbPais.Name = "tbPais";
-            this.tbPais.Size = new System.Drawing.Size(268, 22);
+            this.tbPais.Size = new System.Drawing.Size(367, 29);
             this.tbPais.TabIndex = 19;
             // 
             // lbContinente
@@ -62,11 +64,12 @@
             this.lbContinente.AutoSize = true;
             this.lbContinente.BackColor = System.Drawing.Color.SaddleBrown;
             this.lbContinente.ForeColor = System.Drawing.Color.White;
-            this.lbContinente.Location = new System.Drawing.Point(12, 59);
-            this.lbContinente.MinimumSize = new System.Drawing.Size(100, 0);
+            this.lbContinente.Location = new System.Drawing.Point(15, 67);
+            this.lbContinente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbContinente.MinimumSize = new System.Drawing.Size(138, 0);
             this.lbContinente.Name = "lbContinente";
-            this.lbContinente.Padding = new System.Windows.Forms.Padding(3);
-            this.lbContinente.Size = new System.Drawing.Size(100, 22);
+            this.lbContinente.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.lbContinente.Size = new System.Drawing.Size(138, 28);
             this.lbContinente.TabIndex = 21;
             this.lbContinente.Text = "Continente";
             // 
@@ -74,9 +77,10 @@
             // 
             this.btOK.BackColor = System.Drawing.Color.Green;
             this.btOK.ForeColor = System.Drawing.Color.White;
-            this.btOK.Location = new System.Drawing.Point(118, 104);
+            this.btOK.Location = new System.Drawing.Point(77, 113);
+            this.btOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(114, 42);
+            this.btOK.Size = new System.Drawing.Size(158, 58);
             this.btOK.TabIndex = 23;
             this.btOK.Text = "&Acceptar";
             this.btOK.UseVisualStyleBackColor = false;
@@ -86,9 +90,10 @@
             // 
             this.btNo.BackColor = System.Drawing.Color.Red;
             this.btNo.ForeColor = System.Drawing.Color.White;
-            this.btNo.Location = new System.Drawing.Point(272, 104);
+            this.btNo.Location = new System.Drawing.Point(290, 113);
+            this.btNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btNo.Name = "btNo";
-            this.btNo.Size = new System.Drawing.Size(114, 42);
+            this.btNo.Size = new System.Drawing.Size(158, 58);
             this.btNo.TabIndex = 24;
             this.btNo.Text = "&Cancel·lar";
             this.btNo.UseVisualStyleBackColor = false;
@@ -97,23 +102,28 @@
             // cbContinente
             // 
             this.cbContinente.FormattingEnabled = true;
-            this.cbContinente.Location = new System.Drawing.Point(118, 59);
+            this.cbContinente.Location = new System.Drawing.Point(160, 67);
+            this.cbContinente.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbContinente.Name = "cbContinente";
-            this.cbContinente.Size = new System.Drawing.Size(268, 24);
+            this.cbContinente.Size = new System.Drawing.Size(367, 30);
             this.cbContinente.TabIndex = 25;
             // 
             // FrmAMBPaises
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 158);
+            this.ClientSize = new System.Drawing.Size(550, 183);
             this.Controls.Add(this.cbContinente);
             this.Controls.Add(this.btNo);
             this.Controls.Add(this.btOK);
             this.Controls.Add(this.lbContinente);
             this.Controls.Add(this.tbPais);
             this.Controls.Add(this.lbPais);
+            this.Font = new System.Drawing.Font("Verdana", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FrmAMBPaises";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAMBPaises";
             this.Load += new System.EventHandler(this.FrmAMBPaises_Load);
             this.ResumeLayout(false);

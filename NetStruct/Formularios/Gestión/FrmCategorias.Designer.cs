@@ -1,6 +1,6 @@
 ﻿namespace NetStruct.Formularios.Gestión
 {
-    partial class FrmCiudades
+    partial class FrmCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -28,71 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgDadesCiudades = new System.Windows.Forms.DataGridView();
             this.btRemove = new System.Windows.Forms.PictureBox();
             this.btAdd = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgDadesCiudades)).BeginInit();
+            this.dgDadesCategoria = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.btRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDadesCategoria)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgDadesCiudades
-            // 
-            this.dgDadesCiudades.AllowUserToAddRows = false;
-            this.dgDadesCiudades.AllowUserToDeleteRows = false;
-            this.dgDadesCiudades.AllowUserToOrderColumns = true;
-            this.dgDadesCiudades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgDadesCiudades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDadesCiudades.Location = new System.Drawing.Point(9, 20);
-            this.dgDadesCiudades.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dgDadesCiudades.Name = "dgDadesCiudades";
-            this.dgDadesCiudades.RowHeadersWidth = 51;
-            this.dgDadesCiudades.RowTemplate.Height = 24;
-            this.dgDadesCiudades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDadesCiudades.Size = new System.Drawing.Size(370, 295);
-            this.dgDadesCiudades.TabIndex = 13;
-            this.dgDadesCiudades.DoubleClick += new System.EventHandler(this.dgDadesCiudades_DoubleClick);
             // 
             // btRemove
             // 
             this.btRemove.Image = global::NetStruct.Properties.Resources.cancel50;
-            this.btRemove.Location = new System.Drawing.Point(333, 319);
+            this.btRemove.Location = new System.Drawing.Point(333, 310);
             this.btRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btRemove.Name = "btRemove";
             this.btRemove.Size = new System.Drawing.Size(38, 41);
             this.btRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btRemove.TabIndex = 15;
+            this.btRemove.TabIndex = 18;
             this.btRemove.TabStop = false;
             this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
             // 
             // btAdd
             // 
             this.btAdd.Image = global::NetStruct.Properties.Resources.add50;
-            this.btAdd.Location = new System.Drawing.Point(280, 319);
+            this.btAdd.Location = new System.Drawing.Point(280, 310);
             this.btAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(38, 41);
             this.btAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btAdd.TabIndex = 14;
+            this.btAdd.TabIndex = 17;
             this.btAdd.TabStop = false;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
-            // FrmCiudades
+            // dgDadesCategoria
+            // 
+            this.dgDadesCategoria.AllowUserToAddRows = false;
+            this.dgDadesCategoria.AllowUserToDeleteRows = false;
+            this.dgDadesCategoria.AllowUserToOrderColumns = true;
+            this.dgDadesCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgDadesCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDadesCategoria.Location = new System.Drawing.Point(9, 10);
+            this.dgDadesCategoria.Margin = new System.Windows.Forms.Padding(2);
+            this.dgDadesCategoria.Name = "dgDadesCategoria";
+            this.dgDadesCategoria.RowHeadersWidth = 51;
+            this.dgDadesCategoria.RowTemplate.Height = 24;
+            this.dgDadesCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgDadesCategoria.Size = new System.Drawing.Size(370, 295);
+            this.dgDadesCategoria.TabIndex = 16;
+            this.dgDadesCategoria.DoubleClick += new System.EventHandler(this.dgDadesCategoria_DoubleClick);
+            // 
+            // FrmCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 366);
+            this.ClientSize = new System.Drawing.Size(389, 356);
             this.Controls.Add(this.btRemove);
             this.Controls.Add(this.btAdd);
-            this.Controls.Add(this.dgDadesCiudades);
+            this.Controls.Add(this.dgDadesCategoria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "FrmCiudades";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCiudades_FormClosing);
-            this.Load += new System.EventHandler(this.FrmCiudades_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgDadesCiudades)).EndInit();
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "FrmCategorias";
+            this.Text = "FrmCategorias";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCategorias_FormClosing);
+            this.Load += new System.EventHandler(this.FrmCategorias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDadesCategoria)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -101,6 +102,6 @@
 
         private System.Windows.Forms.PictureBox btRemove;
         private System.Windows.Forms.PictureBox btAdd;
-        private System.Windows.Forms.DataGridView dgDadesCiudades;
+        private System.Windows.Forms.DataGridView dgDadesCategoria;
     }
 }

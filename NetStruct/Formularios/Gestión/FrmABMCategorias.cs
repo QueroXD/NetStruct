@@ -11,53 +11,39 @@ using System.Windows.Forms;
 
 namespace NetStruct.Formularios.Gestión
 {
-    public partial class FrmAMBCiudades : Form
+    public partial class FrmABMCategorias : Form
     {
         Char op { get; set; } = '\0';
 
         private NetStructEntities NetStructContext { get; set; }
         public String id { get; set; } = "";
         public String nombre { get; set; } = "";
-        public int idPais { get; set; }
 
-        public FrmAMBCiudades(Char xop, NetStructEntities xnet)
+        public FrmABMCategorias(Char xop, NetStructEntities xnet)
         {
             InitializeComponent();
             NetStructContext = xnet;
             op = xop;
         }
 
-        private void FrmAMBCiudades_Load(object sender, EventArgs e)
+        private void FrmABMCategorias_Load(object sender, EventArgs e)
         {
-            llenarComboPaises();
             switch (op)
             {
-                case 'A': this.Text = "Dar de alta una Ciudad"; break;
-                case 'M': this.Text = "Editar informacion de una Ciudad"; break;
-                case 'B': this.Text = "Dar de baja una Ciudad"; break;
+                case 'A': this.Text = "Dar de alta una Categoria"; break;
+                case 'M': this.Text = "Editar informacion de una Categoria"; break;
+                case 'B': this.Text = "Dar de baja una Categoria"; break;
             }
 
-            if(op != 'A')
+            if (op != 'A')
             {
-                tbCiudad.Text = nombre;
-                cbPais.SelectedValue = idPais;
+                tbCategoria.Text = nombre;
             }
 
             if (op == 'B')
             {
-                tbCiudad.Enabled = false;
-                cbPais.Enabled = false;
+                tbCategoria.Enabled = false;
             }
-        }
-
-        private void llenarComboPaises()
-        {
-            var qryPaises = from p in NetStructContext.Paises
-                            select new { p.idPais, p.Nombre };
-
-            cbPais.DataSource = qryPaises.ToList();
-            cbPais.DisplayMember = "nombre";
-            cbPais.ValueMember = "idPais";
         }
 
         private void btOK_Click(object sender, EventArgs e)
@@ -67,9 +53,9 @@ namespace NetStruct.Formularios.Gestión
             {
                 switch (op)
                 {
-                    case 'A': xb = addCiudad(); break;
-                    case 'B': xb = delCiudad(); break;
-                    case 'M': xb = updCiudad(); break;
+                    case 'A': xb = addCategoria(); break;
+                    case 'B': xb = delCategoria(); break;
+                    case 'M': xb = updCategoria(); break;
                 }
                 if (xb)
                 {
@@ -78,55 +64,55 @@ namespace NetStruct.Formularios.Gestión
             }
         }
 
-        private Boolean updCiudad()
+        private Boolean updCategoria()
         {
             Boolean xb = false;
-            Ciudades c = NetStructContext.Ciudades.Find(Convert.ToInt32(id));
+            CategoriaTipo ct = NetStructContext.CategoriaTipo.Find(Convert.ToInt32(id));
 
-            if (c != null)
+            if (ct != null)
             {
-                c.Nombre = tbCiudad.Text.Trim();
-                c.idPais = (int)cbPais.SelectedValue;
-                xb = ferCanvis();
-            }
-            return xb;
-        }
-
-        private Boolean delCiudad()
-        {
-            Boolean xb = false;
-            Ciudades c = NetStructContext.Ciudades.Find(Convert.ToInt32(id));
-
-            if (c != null)
-            {
-                NetStructContext.Ciudades.Remove(c);
+                ct.Nombre = tbCategoria.Text.Trim();
                 xb = ferCanvis();
             }
 
             return xb;
         }
 
-        private Boolean addCiudad()
+        private Boolean delCategoria()
         {
             Boolean xb = false;
-            Ciudades c = new Ciudades();
+            CategoriaTipo ct = NetStructContext.CategoriaTipo.Find(Convert.ToInt32(id));
+
+            if (ct != null)
+            {
+                NetStructContext.CategoriaTipo.Remove(ct);
+                xb = ferCanvis();
+            }
+
+            return xb;
+        }
+
+        private Boolean addCategoria()
+        {
+            Boolean xb = false;
+            CategoriaTipo ct = new CategoriaTipo();
 
             if (vDades())
             {
-                c.Nombre = tbCiudad.Text.Trim();
-                c.idPais = (int)cbPais.SelectedValue;
-                NetStructContext.Ciudades.Add(c);
+                ct.Nombre = tbCategoria.Text.Trim();
+                NetStructContext.CategoriaTipo.Add(ct);
 
                 if (ferCanvis())
                 {
-                    id = c.idCiudad.ToString();
+                    id = ct.idCategoria.ToString();
                     xb = true;
                 }
-                else
+                else 
                 {
                     id = "";
                 }
             }
+
             return xb;
         }
 
@@ -134,7 +120,7 @@ namespace NetStruct.Formularios.Gestión
         {
             Boolean xb = true;
 
-            if ((tbCiudad.Text.Trim().Length == 0) || (cbPais.SelectedItem == null))
+            if ((tbCategoria.Text.Trim().Length == 0))
             {
                 MessageBox.Show("No se pueden dejar espacios en blanco", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 xb = false;

@@ -17,15 +17,11 @@ namespace NetStruct
 
         FrmPaises paises = null;
         FrmCiudades ciudades = null;
+        FrmCategorias categorias = null;
 
         public FrmMain()
         {
             InitializeComponent();
-        }
-
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-        
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,6 +80,30 @@ namespace NetStruct
                 ciudades.Name = xnom;
                 ciudades.MdiParent = this;
                 ciudades.Show();
+            }
+        }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String xnom = "Categorias";
+            if (!(ja_esta_obert(xnom)))
+            {
+                FrmCategorias categorias = new FrmCategorias(netStructContext);
+                categorias.Name = xnom;
+                categorias.MdiParent = this;
+                categorias.Show();
+            }
+        }
+
+        private void infraestructurasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String xnom = "Infraestructuras";
+            if (!(ja_esta_obert(xnom)))
+            {
+                FrmInfraestructuras infraestructuras = new FrmInfraestructuras(netStructContext);
+                infraestructuras.Name = xnom;
+                infraestructuras.MdiParent = this;
+                infraestructuras.Show();
             }
         }
     }
