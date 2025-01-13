@@ -33,6 +33,7 @@
             this.cbContinents = new System.Windows.Forms.ComboBox();
             this.btAdd = new System.Windows.Forms.PictureBox();
             this.btRemove = new System.Windows.Forms.PictureBox();
+            this.chkTodos = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgDadesPaises)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btRemove)).BeginInit();
@@ -40,11 +41,18 @@
             // 
             // dgDadesPaises
             // 
+            this.dgDadesPaises.AllowUserToAddRows = false;
+            this.dgDadesPaises.AllowUserToDeleteRows = false;
+            this.dgDadesPaises.AllowUserToOrderColumns = true;
+            this.dgDadesPaises.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgDadesPaises.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDadesPaises.Location = new System.Drawing.Point(12, 49);
+            this.dgDadesPaises.MultiSelect = false;
             this.dgDadesPaises.Name = "dgDadesPaises";
+            this.dgDadesPaises.ReadOnly = true;
             this.dgDadesPaises.RowHeadersWidth = 51;
             this.dgDadesPaises.RowTemplate.Height = 24;
+            this.dgDadesPaises.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDadesPaises.Size = new System.Drawing.Size(493, 338);
             this.dgDadesPaises.TabIndex = 0;
             this.dgDadesPaises.DoubleClick += new System.EventHandler(this.dgDadesPaises_DoubleClick);
@@ -58,16 +66,16 @@
             this.lbContinents.ForeColor = System.Drawing.Color.Black;
             this.lbContinents.Location = new System.Drawing.Point(12, 19);
             this.lbContinents.Name = "lbContinents";
-            this.lbContinents.Size = new System.Drawing.Size(98, 24);
+            this.lbContinents.Size = new System.Drawing.Size(113, 24);
             this.lbContinents.TabIndex = 1;
-            this.lbContinents.Text = "Continents";
+            this.lbContinents.Text = "Continentes:";
             // 
             // cbContinents
             // 
             this.cbContinents.FormattingEnabled = true;
-            this.cbContinents.Location = new System.Drawing.Point(116, 19);
+            this.cbContinents.Location = new System.Drawing.Point(131, 19);
             this.cbContinents.Name = "cbContinents";
-            this.cbContinents.Size = new System.Drawing.Size(308, 24);
+            this.cbContinents.Size = new System.Drawing.Size(179, 24);
             this.cbContinents.TabIndex = 2;
             this.cbContinents.SelectedIndexChanged += new System.EventHandler(this.cbContinents_SelectedIndexChanged);
             // 
@@ -93,18 +101,32 @@
             this.btRemove.TabStop = false;
             this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
             // 
+            // chkTodos
+            // 
+            this.chkTodos.AutoSize = true;
+            this.chkTodos.Checked = true;
+            this.chkTodos.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTodos.Location = new System.Drawing.Point(338, 23);
+            this.chkTodos.Name = "chkTodos";
+            this.chkTodos.Size = new System.Drawing.Size(80, 20);
+            this.chkTodos.TabIndex = 13;
+            this.chkTodos.Text = "Sin Filtro";
+            this.chkTodos.UseVisualStyleBackColor = true;
+            this.chkTodos.CheckedChanged += new System.EventHandler(this.chkTodos_CheckedChanged);
+            // 
             // FrmPaises
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 450);
+            this.Controls.Add(this.chkTodos);
             this.Controls.Add(this.btRemove);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.cbContinents);
             this.Controls.Add(this.lbContinents);
             this.Controls.Add(this.dgDadesPaises);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmPaises";
-            this.Text = "FrmPaises";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPaises_FormClosing);
             this.Load += new System.EventHandler(this.FrmPaises_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgDadesPaises)).EndInit();
@@ -122,5 +144,6 @@
         private System.Windows.Forms.ComboBox cbContinents;
         private System.Windows.Forms.PictureBox btAdd;
         private System.Windows.Forms.PictureBox btRemove;
+        private System.Windows.Forms.CheckBox chkTodos;
     }
 }

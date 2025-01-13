@@ -15,15 +15,16 @@ namespace NetStruct.Formularios.Gestión
     {
         Char op { get; set; } = '\0';
 
-        private NetStructEntities netStructContext {  get; set; }
+        private NetStructEntities NetStructContext {  get; set; }
 
-        public String pais { get; set; } = "";
+        public String idPais { get; set; } = "";
         public String continente { get; set; } = "";
+        public int idContinente { get; set; }
 
-        public FrmAMBPaises(Char xop, NetStructEntities xNetStruct)
+        public FrmAMBPaises(Char xop, NetStructEntities xnet)
         {
             InitializeComponent();
-            netStructContext = xNetStruct;
+            NetStructContext = xnet;
             op = xop;
         }
 
@@ -37,22 +38,39 @@ namespace NetStruct.Formularios.Gestión
                 case 'B': this.Text = "Eliminar Pais"; break;
                 case 'M': this.Text = "Modificacio d'un Pais"; break;
             }
+
+            tbPais.Text = idPais;
+            if (op == 'A')
+            {
+                cbContinente.SelectedIndex = 0;
+            }
+            else
+            {
+                cbContinente.SelectedValue = idContinente;
+            }
+
+            tbPais.Enabled = (op != 'B');
+            cbContinente.Enabled = (op != 'B');
         }
 
         private void omplirComboContinents()
         {
-            var qryContinents = from c in netStructContext.Continente
+            var qryContinents = from c in NetStructContext.Continente
                                 orderby c.idContinente
                                 select new
                                 {
-                                    id = c.idContinente,
-                                    nom = c.Nombre
+                                    idContinent = c.idContinente,
+                                    Contienente = c.Nombre
                                 };
 
             cbContinente.DataSource = qryContinents.ToList();
-            cbContinente.DisplayMember = "nom";
-            cbContinente.ValueMember = "id";
+            cbContinente.DisplayMember = "Contienente";
+            cbContinente.ValueMember = "idContinent";
             cbContinente.SelectedIndex = 0;
+            if (cbContinente.Items.Count > 0)
+            {
+                cbContinente.SelectedIndex = 0;
+            }
         }
 
         private void btNo_Click(object sender, EventArgs e)
@@ -85,7 +103,7 @@ namespace NetStruct.Formularios.Gestión
 
             if ((tbPais.Text.Trim().Length == 0) || (cbContinente.SelectedItem == null))
             {
-                MessageBox.Show("No es poden deixar dades en blanc", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se pueden dejar datos en blanco", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 xb = false;
             }
             return xb;
@@ -99,16 +117,16 @@ namespace NetStruct.Formularios.Gestión
             if(vDades())
             {
                 p.Nombre = tbPais.Text;
-                netStructContext.Paises.Add(p);
+                NetStructContext.Paises.Add(p);
 
                 if(ferCanvis())
                 {
-                    pais = tbPais.Text.Trim();
+                    idPais = tbPais.Text.Trim();
                     xb = true;
                 }
                 else
                 {
-                    pais = "";
+                    idPais = "";
                 }
             }
             return xb;
@@ -117,7 +135,7 @@ namespace NetStruct.Formularios.Gestión
         private Boolean updPais()
         {
             Boolean xb = false;
-            Paises p = netStructContext.Paises.Find(tbPais.Text.Trim());
+            Paises p = NetStructContext.Paises.Find(tbPais.Text.Trim());
 
             if (p != null)
             {
@@ -130,11 +148,11 @@ namespace NetStruct.Formularios.Gestión
         private Boolean delPais()
         {
             Boolean xb = false;
-            Paises p = netStructContext.Paises.Find(tbPais.Text.Trim());
+            Paises p = NetStructContext.Paises.Find(tbPais.Text.Trim());
 
             if (p != null)
             {
-                netStructContext.Paises.Remove(p);
+                NetStructContext.Paises.Remove(p);
                 xb = ferCanvis();
             }
             return xb;
@@ -145,14 +163,14 @@ namespace NetStruct.Formularios.Gestión
             Boolean xb = false;
             try
             {
-                netStructContext.SaveChanges();
+                NetStructContext.SaveChanges();
                 xb = true;
             }
             catch (Exception excp)
             {
                 MessageBox.Show(excp.InnerException.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                foreach (var accio in netStructContext.ChangeTracker.Entries())
+                foreach (var accio in NetStructContext.ChangeTracker.Entries())
                 {
                     accio.State = EntityState.Detached;
                 }

@@ -38,6 +38,7 @@ CREATE TABLE Infraestructura (
     Horario VARCHAR(100),
     TelefonoContacto VARCHAR(20),
     EmailContacto VARCHAR(100),
+    UrlWeb VARCHAR(100),
     MiniaturaWeb VARCHAR(MAX),
     Valoracion DECIMAL(3, 2),
     idCiudad INT NOT NULL,

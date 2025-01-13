@@ -18,6 +18,7 @@ namespace NetStruct
         FrmPaises paises = null;
         FrmCiudades ciudades = null;
         FrmCategorias categorias = null;
+        FrmInfraestructuras infraestructuras = null;
 
         public FrmMain()
         {
@@ -88,7 +89,7 @@ namespace NetStruct
             String xnom = "Categorias";
             if (!(ja_esta_obert(xnom)))
             {
-                FrmCategorias categorias = new FrmCategorias(netStructContext);
+                categorias = new FrmCategorias(netStructContext);
                 categorias.Name = xnom;
                 categorias.MdiParent = this;
                 categorias.Show();
@@ -100,7 +101,7 @@ namespace NetStruct
             String xnom = "Infraestructuras";
             if (!(ja_esta_obert(xnom)))
             {
-                FrmInfraestructuras infraestructuras = new FrmInfraestructuras(netStructContext);
+                infraestructuras = new FrmInfraestructuras(netStructContext);
                 infraestructuras.Name = xnom;
                 infraestructuras.MdiParent = this;
                 infraestructuras.Show();
