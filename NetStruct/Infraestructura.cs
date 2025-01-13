@@ -28,6 +28,7 @@ namespace NetStruct
         public string Horario { get; set; }
         public string TelefonoContacto { get; set; }
         public string EmailContacto { get; set; }
+        public string UrlWeb { get; set; }
         public string MiniaturaWeb { get; set; }
         public Nullable<decimal> Valoracion { get; set; }
         public int idCiudad { get; set; }

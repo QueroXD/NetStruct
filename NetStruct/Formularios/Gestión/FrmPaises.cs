@@ -138,7 +138,7 @@ namespace NetStruct.Formularios.Gestión
         private void getDades(int idContinent)
         {
             var qryPaises = from c in netStructContext.Continente
-                            join p in netStructContext.Paises
+                            join p in netStructContext.Clasifica
                             on c.idContinente equals p.idContinente
                             where c.idContinente == idContinent
                             orderby c.idContinente
