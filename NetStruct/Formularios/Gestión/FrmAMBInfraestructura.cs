@@ -41,14 +41,11 @@ namespace NetStruct.Formularios.Gestión
             switch (op)
             {
                 case 'A':
-                    this.Text = "Alta d'una nova infraestructua";
-                    break;
+                    this.Text = "Alta d'una nova infraestructua"; break;
                 case 'B':
-                    this.Text = "Eliminar Infraestructura";
-                    loadImage(); break;
+                    this.Text = "Eliminar Infraestructura"; break;
                 case 'M':
-                    this.Text = "Modificacio d'una Infraestructura";
-                    loadImage(); break;
+                    this.Text = "Modificacio d'una Infraestructura"; break;
             }
         }
 
@@ -128,6 +125,11 @@ namespace NetStruct.Formularios.Gestión
             }
 
             return capturada;
+        }
+
+        private void btMaps_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://maps.google.com/?q=" + nLatitud.Value.ToString().Replace(",", ".") + "," + nLongitud.Value.ToString().Replace(",", "."));
         }
 
         private void btCancelar_Click(object sender, EventArgs e)

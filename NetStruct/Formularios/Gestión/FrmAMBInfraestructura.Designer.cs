@@ -41,10 +41,9 @@
             this.lbUrl = new System.Windows.Forms.Label();
             this.lbImatge = new System.Windows.Forms.Label();
             this.btFoto = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.pbWeb = new System.Windows.Forms.PictureBox();
-            this.lbGoogleMaps = new System.Windows.Forms.Label();
+            this.lbLatitud = new System.Windows.Forms.Label();
             this.btPrevisualizar = new System.Windows.Forms.Button();
             this.lbTelefon = new System.Windows.Forms.Label();
             this.tbTelefon = new System.Windows.Forms.TextBox();
@@ -62,9 +61,14 @@
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.lbHorari = new System.Windows.Forms.Label();
             this.tbHorari = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.lbLongitud = new System.Windows.Forms.Label();
+            this.nLatitud = new System.Windows.Forms.NumericUpDown();
+            this.nLongitud = new System.Windows.Forms.NumericUpDown();
+            this.btMaps = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nLatitud)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nLongitud)).BeginInit();
             this.SuspendLayout();
             // 
             // lbNom
@@ -198,16 +202,6 @@
             this.btFoto.UseVisualStyleBackColor = false;
             this.btFoto.Click += new System.EventHandler(this.btFoto_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::NetStruct.Properties.Resources.logoGoogleMaps;
-            this.pictureBox1.Location = new System.Drawing.Point(635, 348);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(118, 89);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 39;
-            this.pictureBox1.TabStop = false;
-            // 
             // pbFoto
             // 
             this.pbFoto.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pbFoto.ErrorImage")));
@@ -229,18 +223,18 @@
             this.pbWeb.TabIndex = 35;
             this.pbWeb.TabStop = false;
             // 
-            // lbGoogleMaps
+            // lbLatitud
             // 
-            this.lbGoogleMaps.AutoSize = true;
-            this.lbGoogleMaps.BackColor = System.Drawing.Color.Coral;
-            this.lbGoogleMaps.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbGoogleMaps.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGoogleMaps.ForeColor = System.Drawing.Color.Black;
-            this.lbGoogleMaps.Location = new System.Drawing.Point(635, 312);
-            this.lbGoogleMaps.Name = "lbGoogleMaps";
-            this.lbGoogleMaps.Size = new System.Drawing.Size(118, 24);
-            this.lbGoogleMaps.TabIndex = 40;
-            this.lbGoogleMaps.Text = "Google Maps";
+            this.lbLatitud.AutoSize = true;
+            this.lbLatitud.BackColor = System.Drawing.Color.Coral;
+            this.lbLatitud.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLatitud.ForeColor = System.Drawing.Color.Black;
+            this.lbLatitud.Location = new System.Drawing.Point(432, 332);
+            this.lbLatitud.Name = "lbLatitud";
+            this.lbLatitud.Size = new System.Drawing.Size(66, 24);
+            this.lbLatitud.TabIndex = 40;
+            this.lbLatitud.Text = "Latitud";
             // 
             // btPrevisualizar
             // 
@@ -425,11 +419,57 @@
             this.tbHorari.Size = new System.Drawing.Size(458, 22);
             this.tbHorari.TabIndex = 57;
             // 
+            // lbLongitud
+            // 
+            this.lbLongitud.AutoSize = true;
+            this.lbLongitud.BackColor = System.Drawing.Color.Coral;
+            this.lbLongitud.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLongitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongitud.ForeColor = System.Drawing.Color.Black;
+            this.lbLongitud.Location = new System.Drawing.Point(432, 368);
+            this.lbLongitud.Name = "lbLongitud";
+            this.lbLongitud.Size = new System.Drawing.Size(81, 24);
+            this.lbLongitud.TabIndex = 58;
+            this.lbLongitud.Text = "Longitud";
+            // 
+            // nLatitud
+            // 
+            this.nLatitud.DecimalPlaces = 5;
+            this.nLatitud.Location = new System.Drawing.Point(505, 334);
+            this.nLatitud.Name = "nLatitud";
+            this.nLatitud.Size = new System.Drawing.Size(132, 22);
+            this.nLatitud.TabIndex = 59;
+            this.nLatitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // nLongitud
+            // 
+            this.nLongitud.DecimalPlaces = 5;
+            this.nLongitud.Location = new System.Drawing.Point(519, 370);
+            this.nLongitud.Name = "nLongitud";
+            this.nLongitud.Size = new System.Drawing.Size(132, 22);
+            this.nLongitud.TabIndex = 60;
+            this.nLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btMaps
+            // 
+            this.btMaps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btMaps.Location = new System.Drawing.Point(657, 347);
+            this.btMaps.Name = "btMaps";
+            this.btMaps.Size = new System.Drawing.Size(113, 33);
+            this.btMaps.TabIndex = 61;
+            this.btMaps.Text = "Google Maps";
+            this.btMaps.UseVisualStyleBackColor = false;
+            this.btMaps.Click += new System.EventHandler(this.btMaps_Click);
+            // 
             // FrmAMBInfraestructura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 536);
+            this.Controls.Add(this.btMaps);
+            this.Controls.Add(this.nLongitud);
+            this.Controls.Add(this.nLatitud);
+            this.Controls.Add(this.lbLongitud);
             this.Controls.Add(this.tbHorari);
             this.Controls.Add(this.lbHorari);
             this.Controls.Add(this.cbCategoria);
@@ -447,8 +487,7 @@
             this.Controls.Add(this.tbTelefon);
             this.Controls.Add(this.lbTelefon);
             this.Controls.Add(this.btPrevisualizar);
-            this.Controls.Add(this.lbGoogleMaps);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lbLatitud);
             this.Controls.Add(this.btFoto);
             this.Controls.Add(this.pbFoto);
             this.Controls.Add(this.lbImatge);
@@ -466,9 +505,10 @@
             this.Name = "FrmAMBInfraestructura";
             this.Text = "FrmAMBInfraestructura";
             this.Load += new System.EventHandler(this.FrmAMBInfraestructura_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nLatitud)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nLongitud)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,8 +530,7 @@
         private System.Windows.Forms.Label lbImatge;
         private System.Windows.Forms.PictureBox pbFoto;
         private System.Windows.Forms.Button btFoto;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lbGoogleMaps;
+        private System.Windows.Forms.Label lbLatitud;
         private System.Windows.Forms.Button btPrevisualizar;
         private System.Windows.Forms.Label lbTelefon;
         private System.Windows.Forms.TextBox tbTelefon;
@@ -509,5 +548,9 @@
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Label lbHorari;
         private System.Windows.Forms.TextBox tbHorari;
+        private System.Windows.Forms.Label lbLongitud;
+        private System.Windows.Forms.NumericUpDown nLatitud;
+        private System.Windows.Forms.NumericUpDown nLongitud;
+        private System.Windows.Forms.Button btMaps;
     }
 }
