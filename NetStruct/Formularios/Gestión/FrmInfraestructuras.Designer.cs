@@ -32,13 +32,13 @@
             this.btAdd = new System.Windows.Forms.PictureBox();
             this.dgDadesInfra = new System.Windows.Forms.DataGridView();
             this.gbFiltres = new System.Windows.Forms.GroupBox();
+            this.ckbFiltres = new System.Windows.Forms.CheckBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.lbCategoria = new System.Windows.Forms.Label();
             this.cbPaises = new System.Windows.Forms.ComboBox();
             this.lbPaises = new System.Windows.Forms.Label();
             this.cbContinents = new System.Windows.Forms.ComboBox();
             this.lbContinents = new System.Windows.Forms.Label();
-            this.ckbFiltres = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.btRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgDadesInfra)).BeginInit();
@@ -55,6 +55,7 @@
             this.btRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btRemove.TabIndex = 17;
             this.btRemove.TabStop = false;
+            this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
             // 
             // btAdd
             // 
@@ -66,6 +67,7 @@
             this.btAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btAdd.TabIndex = 16;
             this.btAdd.TabStop = false;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // dgDadesInfra
             // 
@@ -82,6 +84,7 @@
             this.dgDadesInfra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDadesInfra.Size = new System.Drawing.Size(1337, 500);
             this.dgDadesInfra.TabIndex = 14;
+            this.dgDadesInfra.DoubleClick += new System.EventHandler(this.dgDadesInfra_DoubleClick);
             // 
             // gbFiltres
             // 
@@ -97,6 +100,19 @@
             this.gbFiltres.Size = new System.Drawing.Size(1337, 58);
             this.gbFiltres.TabIndex = 25;
             this.gbFiltres.TabStop = false;
+            // 
+            // ckbFiltres
+            // 
+            this.ckbFiltres.AutoSize = true;
+            this.ckbFiltres.Checked = true;
+            this.ckbFiltres.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbFiltres.Location = new System.Drawing.Point(1236, 19);
+            this.ckbFiltres.Name = "ckbFiltres";
+            this.ckbFiltres.Size = new System.Drawing.Size(95, 20);
+            this.ckbFiltres.TabIndex = 30;
+            this.ckbFiltres.Text = "Sense filtre";
+            this.ckbFiltres.UseVisualStyleBackColor = true;
+            this.ckbFiltres.CheckedChanged += new System.EventHandler(this.ckbFiltres_CheckedChanged);
             // 
             // cbCategoria
             // 
@@ -166,19 +182,6 @@
             this.lbContinents.Size = new System.Drawing.Size(98, 24);
             this.lbContinents.TabIndex = 24;
             this.lbContinents.Text = "Continents";
-            // 
-            // ckbFiltres
-            // 
-            this.ckbFiltres.AutoSize = true;
-            this.ckbFiltres.Checked = true;
-            this.ckbFiltres.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbFiltres.Location = new System.Drawing.Point(1236, 19);
-            this.ckbFiltres.Name = "ckbFiltres";
-            this.ckbFiltres.Size = new System.Drawing.Size(95, 20);
-            this.ckbFiltres.TabIndex = 30;
-            this.ckbFiltres.Text = "Sense filtre";
-            this.ckbFiltres.UseVisualStyleBackColor = true;
-            this.ckbFiltres.CheckedChanged += new System.EventHandler(this.ckbFiltres_CheckedChanged);
             // 
             // FrmInfraestructuras
             // 

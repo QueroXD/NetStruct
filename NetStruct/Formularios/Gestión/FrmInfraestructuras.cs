@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetStruct;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -97,7 +98,7 @@ namespace NetStruct.Formularios.Gestión
                                      emailContacto = i.EmailContacto,
                                      urlWeb = i.UrlWeb,
                                      valoracion = i.Valoracion,
-                                     categoria = i.CategoriaTipo.Nombre,
+                                     //categoria = i.CategoriaTipo.Nombre,
                                      ciudad = i.Ciudades.Nombre,
                                      pais = i.Ciudades.Paises.Nombre,
                                      continente = i.Ciudades.Paises.Nombre
@@ -109,7 +110,7 @@ namespace NetStruct.Formularios.Gestión
         {
             var qryAmbFiltre = from i in netStructContext.Infraestructura
                                where i.Ciudades.Paises.idPais == idPaises
-                               where i.CategoriaTipo.idCategoria == idCategoria
+                               //where i.CategoriaTipo.idCategoria == idCategoria
                                where i.Ciudades.Paises.Continente.idContinente == idContinente
                                orderby i.idInfraestructura
                                select new
@@ -123,7 +124,7 @@ namespace NetStruct.Formularios.Gestión
                                    emailContacto = i.EmailContacto,
                                    urlWeb = i.UrlWeb,
                                    valoracion = i.Valoracion,
-                                   categoria = i.CategoriaTipo.Nombre,
+                                   //categoria = i.CategoriaTipo.Nombre,
                                    ciudad = i.Ciudades.Nombre,
                                    pais = i.Ciudades.Paises.Nombre,
                                    continente = i.Ciudades.Paises.Nombre
@@ -141,7 +142,7 @@ namespace NetStruct.Formularios.Gestión
             dgDadesInfra.Columns["emailContacto"].HeaderText = "Email Contacto";
             dgDadesInfra.Columns["urlWeb"].HeaderText = "Url Web";
             dgDadesInfra.Columns["valoracion"].HeaderText = "Valoracion";
-            dgDadesInfra.Columns["categoria"].HeaderText = "Categoria Tipo";
+            //dgDadesInfra.Columns["categoria"].HeaderText = "Categoria Tipo";
             dgDadesInfra.Columns["ciudad"].HeaderText = "Ciudad";
             dgDadesInfra.Columns["pais"].HeaderText = "Pais";
             dgDadesInfra.Columns["continente"].HeaderText = "Continente";
@@ -194,6 +195,24 @@ namespace NetStruct.Formularios.Gestión
             cbCategoria.DisplayMember = "categoria";
             cbCategoria.ValueMember = "idCategoria";
             cbCategoria.SelectedIndex = 0;
+        }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            fAMBInfraestructura = new FrmAMBInfraestructura('A', netStructContext);
+            fAMBInfraestructura.ShowDialog();
+        }
+
+        private void btRemove_Click(object sender, EventArgs e)
+        {
+            fAMBInfraestructura = new FrmAMBInfraestructura('B', netStructContext);
+            fAMBInfraestructura.ShowDialog();
+        }
+
+        private void dgDadesInfra_DoubleClick(object sender, EventArgs e)
+        {
+            fAMBInfraestructura = new FrmAMBInfraestructura('M', netStructContext);
+            fAMBInfraestructura.ShowDialog();
         }
     }
 }
