@@ -132,6 +132,26 @@ namespace NetStruct.Formularios.Gestión
             System.Diagnostics.Process.Start("https://maps.google.com/?q=" + nLatitud.Value.ToString().Replace(",", ".") + "," + nLongitud.Value.ToString().Replace(",", "."));
         }
 
+        /* Prueba esto si funciona te dejo la latitud y la longitud para que lo pruebes, es de la sagrada familia se supone que deberia funcionar 41.40411298539085, 2.1749749128010936
+            
+        private void btMaps_Click(object sender, EventArgs e)
+        {
+            string baseUrl = "https://maps.google.com/?";
+            string lat = nLatitud.Value.ToString().Replace(",", ".");
+            string lng = nLongitud.Value.ToString().Replace(",", ".");
+            string zoom = "18"; // Ajusta el zoom según lo que necesites (15-20 es un rango razonable)
+            string mapType = "k"; // 'k' es el tipo de mapa satélite
+
+            string url = $"{baseUrl}q={lat},{lng}&t={mapType}&z={zoom}";
+
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true // Esto es importante para evitar problemas en .NET Core/Framework
+            });
+        }
+        */
+
         private void btCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
