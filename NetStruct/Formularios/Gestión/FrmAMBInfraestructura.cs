@@ -42,7 +42,7 @@ namespace NetStruct.Formularios.Gestión
             {
                 case 'A':
                     this.Text = "Alta d'una nova infraestructua";
-                    loadImage(); break;
+                    break;
                 case 'B':
                     this.Text = "Eliminar Infraestructura";
                     loadImage(); break;

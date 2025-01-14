@@ -19,10 +19,10 @@ namespace NetStruct.Formularios.Gestión
 
         Boolean bFirst = true;
 
-        public FrmInfraestructuras(NetStructEntities netStructContext)
+        public FrmInfraestructuras(NetStructEntities xnet)
         {
             InitializeComponent();
-            netStructContext = netStructContext;
+            netStructContext = xnet;
         }
 
         private void FrmInfraestructuras_Load(object sender, EventArgs e)
