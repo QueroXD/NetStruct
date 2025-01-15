@@ -61,6 +61,7 @@
     <Compile Include="Ciudades.cs">
       <DependentUpon>ModelNetStruct.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\ClWeb.cs" />
     <Compile Include="Continente.cs">
       <DependentUpon>ModelNetStruct.tt</DependentUpon>
     </Compile>
@@ -87,6 +88,12 @@
     </Compile>
     <Compile Include="Formularios\Gestión\FrmAMBCiudades.Designer.cs">
       <DependentUpon>FrmAMBCiudades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmAMBInfraestructura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Gestión\FrmAMBInfraestructura.Designer.cs">
+      <DependentUpon>FrmAMBInfraestructura.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Gestión\FrmAMBPaises.cs">
       <SubType>Form</SubType>
@@ -159,6 +166,9 @@
     <EmbeddedResource Include="Formularios\Gestión\FrmAMBCiudades.resx">
       <DependentUpon>FrmAMBCiudades.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Gestión\FrmAMBInfraestructura.resx">
+      <DependentUpon>FrmAMBInfraestructura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Gestión\FrmAMBPaises.resx">
       <DependentUpon>FrmAMBPaises.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +224,9 @@
   <ItemGroup>
     <None Include="Resources\cancel50.png" />
     <None Include="Resources\add50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoGoogleMaps.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ModelNetStruct.Context.tt">

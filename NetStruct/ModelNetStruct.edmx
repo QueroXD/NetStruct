@@ -50,6 +50,7 @@
           <Property Name="idInfraestructura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Cordenadas" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Reseña" Type="varchar(max)" />
           <Property Name="Horario" Type="varchar" MaxLength="100" />
           <Property Name="TelefonoContacto" Type="varchar" MaxLength="20" />
@@ -231,6 +232,7 @@
           <Property Name="idInfraestructura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cordenadas" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Reseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TelefonoContacto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -387,6 +389,7 @@
                 <ScalarProperty Name="idInfraestructura" ColumnName="idInfraestructura" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Cordenadas" ColumnName="Cordenadas" />
                 <ScalarProperty Name="Reseña" ColumnName="Reseña" />
                 <ScalarProperty Name="Horario" ColumnName="Horario" />
                 <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
