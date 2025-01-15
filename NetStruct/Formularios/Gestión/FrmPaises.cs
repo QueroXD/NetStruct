@@ -27,7 +27,7 @@ namespace NetStruct.Formularios.Gestión
         private void FrmPaises_Load(object sender, EventArgs e)
         {
             omplirComboContinents();
-            getDades((int)cbContinents.SelectedValue);
+            getDadesSinFiltro();
             iniDGrid();
             bFirst = false;
         }
@@ -87,7 +87,7 @@ namespace NetStruct.Formularios.Gestión
                 fAMBPaises = new FrmAMBPaises('B', netStructContext);
 
                 fAMBPaises.idPais = dgDadesPaises.SelectedRows[0].Cells["idPais"].Value.ToString().Trim();
-                fAMBPaises.continente = dgDadesPaises.SelectedRows[0].Cells["nomContinent"].Value.ToString();
+                fAMBPaises.pais = dgDadesPaises.SelectedRows[0].Cells["pais"].Value.ToString();
                 fAMBPaises.idContinente = (int)dgDadesPaises.SelectedRows[0].Cells["idContinent"].Value;
 
                 fAMBPaises.ShowDialog();
@@ -113,7 +113,7 @@ namespace NetStruct.Formularios.Gestión
             fAMBPaises = new FrmAMBPaises('M', netStructContext);
 
             fAMBPaises.idPais = dgDadesPaises.SelectedRows[0].Cells["idPais"].Value.ToString();
-            fAMBPaises.continente = dgDadesPaises.SelectedRows[0].Cells["nomContinent"].Value.ToString();
+            fAMBPaises.pais = dgDadesPaises.SelectedRows[0].Cells["pais"].Value.ToString();
             fAMBPaises.idContinente = (int)dgDadesPaises.SelectedRows[0].Cells["idContinent"].Value;
 
             fAMBPaises.ShowDialog();
@@ -138,7 +138,7 @@ namespace NetStruct.Formularios.Gestión
         private void getDades(int idContinent)
         {
             var qryPaises = from c in netStructContext.Continente
-                            join p in netStructContext.Clasifica
+                            join p in netStructContext.Paises
                             on c.idContinente equals p.idContinente
                             where c.idContinente == idContinent
                             orderby c.idContinente

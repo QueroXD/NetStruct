@@ -18,7 +18,7 @@ namespace NetStruct.Formularios.Gestión
         private NetStructEntities NetStructContext {  get; set; }
 
         public String idPais { get; set; } = "";
-        public String continente { get; set; } = "";
+        public String pais { get; set; } = "";
         public int idContinente { get; set; }
 
         public FrmAMBPaises(Char xop, NetStructEntities xnet)
@@ -39,7 +39,7 @@ namespace NetStruct.Formularios.Gestión
                 case 'M': this.Text = "Modificacio d'un Pais"; break;
             }
 
-            tbPais.Text = idPais;
+            tbPais.Text = pais;
             if (op == 'A')
             {
                 cbContinente.SelectedIndex = 0;
@@ -117,11 +117,12 @@ namespace NetStruct.Formularios.Gestión
             if(vDades())
             {
                 p.Nombre = tbPais.Text;
+                p.idContinente = (int)cbContinente.SelectedValue;
                 NetStructContext.Paises.Add(p);
 
                 if(ferCanvis())
                 {
-                    idPais = tbPais.Text.Trim();
+                    idPais = idPais.ToString();
                     xb = true;
                 }
                 else
@@ -135,7 +136,7 @@ namespace NetStruct.Formularios.Gestión
         private Boolean updPais()
         {
             Boolean xb = false;
-            Paises p = NetStructContext.Paises.Find(tbPais.Text.Trim());
+            Paises p = NetStructContext.Paises.Find(Convert.ToInt32(idPais));
 
             if (p != null)
             {
@@ -148,7 +149,7 @@ namespace NetStruct.Formularios.Gestión
         private Boolean delPais()
         {
             Boolean xb = false;
-            Paises p = NetStructContext.Paises.Find(tbPais.Text.Trim());
+            Paises p = NetStructContext.Paises.Find(Convert.ToInt32(idPais));
 
             if (p != null)
             {

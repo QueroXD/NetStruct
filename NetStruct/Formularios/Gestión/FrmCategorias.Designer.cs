@@ -39,10 +39,10 @@
             // btRemove
             // 
             this.btRemove.Image = global::NetStruct.Properties.Resources.cancel50;
-            this.btRemove.Location = new System.Drawing.Point(333, 310);
-            this.btRemove.Margin = new System.Windows.Forms.Padding(2);
+            this.btRemove.Location = new System.Drawing.Point(444, 382);
+            this.btRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btRemove.Name = "btRemove";
-            this.btRemove.Size = new System.Drawing.Size(38, 41);
+            this.btRemove.Size = new System.Drawing.Size(51, 50);
             this.btRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btRemove.TabIndex = 18;
             this.btRemove.TabStop = false;
@@ -51,10 +51,10 @@
             // btAdd
             // 
             this.btAdd.Image = global::NetStruct.Properties.Resources.add50;
-            this.btAdd.Location = new System.Drawing.Point(280, 310);
-            this.btAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btAdd.Location = new System.Drawing.Point(373, 382);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(38, 41);
+            this.btAdd.Size = new System.Drawing.Size(51, 50);
             this.btAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btAdd.TabIndex = 17;
             this.btAdd.TabStop = false;
@@ -65,28 +65,29 @@
             this.dgDadesCategoria.AllowUserToAddRows = false;
             this.dgDadesCategoria.AllowUserToDeleteRows = false;
             this.dgDadesCategoria.AllowUserToOrderColumns = true;
-            this.dgDadesCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgDadesCategoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgDadesCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDadesCategoria.Location = new System.Drawing.Point(9, 10);
-            this.dgDadesCategoria.Margin = new System.Windows.Forms.Padding(2);
+            this.dgDadesCategoria.Location = new System.Drawing.Point(12, 12);
+            this.dgDadesCategoria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgDadesCategoria.Name = "dgDadesCategoria";
+            this.dgDadesCategoria.RowHeadersVisible = false;
             this.dgDadesCategoria.RowHeadersWidth = 51;
             this.dgDadesCategoria.RowTemplate.Height = 24;
             this.dgDadesCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDadesCategoria.Size = new System.Drawing.Size(370, 295);
+            this.dgDadesCategoria.Size = new System.Drawing.Size(493, 363);
             this.dgDadesCategoria.TabIndex = 16;
             this.dgDadesCategoria.DoubleClick += new System.EventHandler(this.dgDadesCategoria_DoubleClick);
             // 
             // FrmCategorias
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 356);
+            this.ClientSize = new System.Drawing.Size(519, 438);
             this.Controls.Add(this.btRemove);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.dgDadesCategoria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmCategorias";
             this.Text = "FrmCategorias";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCategorias_FormClosing);

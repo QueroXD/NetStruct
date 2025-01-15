@@ -1,4 +1,5 @@
-﻿using NetStruct.Formularios.Gestión;
+﻿using NetStruct.Formularios;
+using NetStruct.Formularios.Gestión;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ namespace NetStruct
         FrmCiudades ciudades = null;
         FrmCategorias categorias = null;
         FrmInfraestructuras infraestructuras = null;
+        FrmGaleria galeria = null;
 
         public FrmMain()
         {
@@ -105,6 +107,18 @@ namespace NetStruct
                 infraestructuras.Name = xnom;
                 infraestructuras.MdiParent = this;
                 infraestructuras.Show();
+            }
+        }
+
+        private void galeriaDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String xnom = "Galeria";
+            if (!(ja_esta_obert(xnom)))
+            {
+                galeria = new FrmGaleria(netStructContext);
+                galeria.Name = xnom;
+                galeria.MdiParent = this;
+                galeria.Show();
             }
         }
     }

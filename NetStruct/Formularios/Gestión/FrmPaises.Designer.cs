@@ -44,12 +44,12 @@
             this.dgDadesPaises.AllowUserToAddRows = false;
             this.dgDadesPaises.AllowUserToDeleteRows = false;
             this.dgDadesPaises.AllowUserToOrderColumns = true;
-            this.dgDadesPaises.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgDadesPaises.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgDadesPaises.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDadesPaises.Location = new System.Drawing.Point(12, 49);
-            this.dgDadesPaises.MultiSelect = false;
             this.dgDadesPaises.Name = "dgDadesPaises";
             this.dgDadesPaises.ReadOnly = true;
+            this.dgDadesPaises.RowHeadersVisible = false;
             this.dgDadesPaises.RowHeadersWidth = 51;
             this.dgDadesPaises.RowTemplate.Height = 24;
             this.dgDadesPaises.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -72,6 +72,7 @@
             // 
             // cbContinents
             // 
+            this.cbContinents.Enabled = false;
             this.cbContinents.FormattingEnabled = true;
             this.cbContinents.Location = new System.Drawing.Point(131, 19);
             this.cbContinents.Name = "cbContinents";
