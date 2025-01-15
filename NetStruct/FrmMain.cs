@@ -112,14 +112,14 @@ namespace NetStruct
 
         private void galeriaDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String xnom = "Galeria";
-            if (!(ja_esta_obert(xnom)))
-            {
-                galeria = new FrmGaleria(netStructContext);
-                galeria.Name = xnom;
-                galeria.MdiParent = this;
-                galeria.Show();
-            }
+            //String xnom = "Galeria";
+            //if (!(ja_esta_obert(xnom)))
+            //{
+            //    galeria = new FrmGaleria(netStructContext);
+            //    galeria.Name = xnom;
+            //    galeria.MdiParent = this;
+            //    galeria.Show();
+            //}
         }
     }
 }

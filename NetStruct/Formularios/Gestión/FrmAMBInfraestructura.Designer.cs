@@ -50,25 +50,24 @@
             this.btConfirm = new System.Windows.Forms.Button();
             this.btCancelar = new System.Windows.Forms.Button();
             this.lbValoracio = new System.Windows.Forms.Label();
-            this.dupValoracio = new System.Windows.Forms.DomainUpDown();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.lbEmail = new System.Windows.Forms.Label();
             this.lbCiutat = new System.Windows.Forms.Label();
             this.cbCiutat = new System.Windows.Forms.ComboBox();
             this.lbAdreca = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbDireccio = new System.Windows.Forms.TextBox();
             this.lbCategoria = new System.Windows.Forms.Label();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.lbHorari = new System.Windows.Forms.Label();
             this.tbHorari = new System.Windows.Forms.TextBox();
             this.lbLongitud = new System.Windows.Forms.Label();
-            this.nLatitud = new System.Windows.Forms.NumericUpDown();
-            this.nLongitud = new System.Windows.Forms.NumericUpDown();
             this.btMaps = new System.Windows.Forms.Button();
+            this.nupValoracio = new System.Windows.Forms.NumericUpDown();
+            this.tbLatitud = new System.Windows.Forms.TextBox();
+            this.tbLongitud = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nLatitud)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nLongitud)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupValoracio)).BeginInit();
             this.SuspendLayout();
             // 
             // lbNom
@@ -86,7 +85,7 @@
             // 
             // tbNom
             // 
-            this.tbNom.Location = new System.Drawing.Point(187, 19);
+            this.tbNom.Location = new System.Drawing.Point(198, 20);
             this.tbNom.Name = "tbNom";
             this.tbNom.Size = new System.Drawing.Size(399, 22);
             this.tbNom.TabIndex = 26;
@@ -114,7 +113,6 @@
             // 
             // cbPaises
             // 
-            this.cbPaises.Enabled = false;
             this.cbPaises.FormattingEnabled = true;
             this.cbPaises.Location = new System.Drawing.Point(432, 225);
             this.cbPaises.Name = "cbPaises";
@@ -136,7 +134,6 @@
             // 
             // cbContinents
             // 
-            this.cbContinents.Enabled = false;
             this.cbContinents.FormattingEnabled = true;
             this.cbContinents.Location = new System.Drawing.Point(116, 225);
             this.cbContinents.Name = "cbContinents";
@@ -306,15 +303,6 @@
             this.lbValoracio.TabIndex = 46;
             this.lbValoracio.Text = "Valoracio";
             // 
-            // dupValoracio
-            // 
-            this.dupValoracio.Location = new System.Drawing.Point(453, 298);
-            this.dupValoracio.Name = "dupValoracio";
-            this.dupValoracio.Size = new System.Drawing.Size(50, 22);
-            this.dupValoracio.TabIndex = 47;
-            this.dupValoracio.Text = "0";
-            this.dupValoracio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // tbEmail
             // 
             this.tbEmail.Location = new System.Drawing.Point(151, 371);
@@ -350,7 +338,6 @@
             // 
             // cbCiutat
             // 
-            this.cbCiutat.Enabled = false;
             this.cbCiutat.FormattingEnabled = true;
             this.cbCiutat.Location = new System.Drawing.Point(77, 262);
             this.cbCiutat.Name = "cbCiutat";
@@ -370,12 +357,12 @@
             this.lbAdreca.TabIndex = 52;
             this.lbAdreca.Text = "Adreça";
             // 
-            // textBox1
+            // tbDireccio
             // 
-            this.textBox1.Location = new System.Drawing.Point(397, 264);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(240, 22);
-            this.textBox1.TabIndex = 53;
+            this.tbDireccio.Location = new System.Drawing.Point(397, 264);
+            this.tbDireccio.Name = "tbDireccio";
+            this.tbDireccio.Size = new System.Drawing.Size(240, 22);
+            this.tbDireccio.TabIndex = 53;
             // 
             // lbCategoria
             // 
@@ -392,7 +379,6 @@
             // 
             // cbCategoria
             // 
-            this.cbCategoria.Enabled = false;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(108, 297);
             this.cbCategoria.Name = "cbCategoria";
@@ -432,24 +418,6 @@
             this.lbLongitud.TabIndex = 58;
             this.lbLongitud.Text = "Longitud";
             // 
-            // nLatitud
-            // 
-            this.nLatitud.DecimalPlaces = 5;
-            this.nLatitud.Location = new System.Drawing.Point(505, 334);
-            this.nLatitud.Name = "nLatitud";
-            this.nLatitud.Size = new System.Drawing.Size(132, 22);
-            this.nLatitud.TabIndex = 59;
-            this.nLatitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // nLongitud
-            // 
-            this.nLongitud.DecimalPlaces = 5;
-            this.nLongitud.Location = new System.Drawing.Point(519, 370);
-            this.nLongitud.Name = "nLongitud";
-            this.nLongitud.Size = new System.Drawing.Size(132, 22);
-            this.nLongitud.TabIndex = 60;
-            this.nLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btMaps
             // 
             this.btMaps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -461,26 +429,49 @@
             this.btMaps.UseVisualStyleBackColor = false;
             this.btMaps.Click += new System.EventHandler(this.btMaps_Click);
             // 
+            // nupValoracio
+            // 
+            this.nupValoracio.DecimalPlaces = 2;
+            this.nupValoracio.Location = new System.Drawing.Point(453, 297);
+            this.nupValoracio.Name = "nupValoracio";
+            this.nupValoracio.Size = new System.Drawing.Size(132, 22);
+            this.nupValoracio.TabIndex = 62;
+            this.nupValoracio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbLatitud
+            // 
+            this.tbLatitud.Location = new System.Drawing.Point(504, 334);
+            this.tbLatitud.Name = "tbLatitud";
+            this.tbLatitud.Size = new System.Drawing.Size(82, 22);
+            this.tbLatitud.TabIndex = 63;
+            // 
+            // tbLongitud
+            // 
+            this.tbLongitud.Location = new System.Drawing.Point(519, 368);
+            this.tbLongitud.Name = "tbLongitud";
+            this.tbLongitud.Size = new System.Drawing.Size(82, 22);
+            this.tbLongitud.TabIndex = 64;
+            // 
             // FrmAMBInfraestructura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 536);
+            this.Controls.Add(this.tbLongitud);
+            this.Controls.Add(this.tbLatitud);
+            this.Controls.Add(this.nupValoracio);
             this.Controls.Add(this.btMaps);
-            this.Controls.Add(this.nLongitud);
-            this.Controls.Add(this.nLatitud);
             this.Controls.Add(this.lbLongitud);
             this.Controls.Add(this.tbHorari);
             this.Controls.Add(this.lbHorari);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.lbCategoria);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbDireccio);
             this.Controls.Add(this.lbAdreca);
             this.Controls.Add(this.cbCiutat);
             this.Controls.Add(this.lbCiutat);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.lbEmail);
-            this.Controls.Add(this.dupValoracio);
             this.Controls.Add(this.lbValoracio);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btConfirm);
@@ -507,8 +498,7 @@
             this.Load += new System.EventHandler(this.FrmAMBInfraestructura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbWeb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nLatitud)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nLongitud)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupValoracio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -537,20 +527,20 @@
         private System.Windows.Forms.Button btConfirm;
         private System.Windows.Forms.Button btCancelar;
         private System.Windows.Forms.Label lbValoracio;
-        private System.Windows.Forms.DomainUpDown dupValoracio;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label lbEmail;
         private System.Windows.Forms.Label lbCiutat;
         private System.Windows.Forms.ComboBox cbCiutat;
         private System.Windows.Forms.Label lbAdreca;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbDireccio;
         private System.Windows.Forms.Label lbCategoria;
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Label lbHorari;
         private System.Windows.Forms.TextBox tbHorari;
         private System.Windows.Forms.Label lbLongitud;
-        private System.Windows.Forms.NumericUpDown nLatitud;
-        private System.Windows.Forms.NumericUpDown nLongitud;
         private System.Windows.Forms.Button btMaps;
+        private System.Windows.Forms.NumericUpDown nupValoracio;
+        private System.Windows.Forms.TextBox tbLatitud;
+        private System.Windows.Forms.TextBox tbLongitud;
     }
 }

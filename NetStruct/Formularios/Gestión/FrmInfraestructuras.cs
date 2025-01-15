@@ -92,6 +92,7 @@ namespace NetStruct.Formularios.Gestión
                                      idInfaestructura = i.idInfraestructura,
                                      nombre = i.Nombre,
                                      direccion = i.Direccion,
+                                     coordenadas = i.Cordenadas,
                                      reseña = i.Reseña,
                                      horario = i.Horario,
                                      telefonoContacto = i.TelefonoContacto,
@@ -101,7 +102,7 @@ namespace NetStruct.Formularios.Gestión
                                      //categoria = i.CategoriaTipo.Nombre,
                                      ciudad = i.Ciudades.Nombre,
                                      pais = i.Ciudades.Paises.Nombre,
-                                     continente = i.Ciudades.Paises.Nombre
+                                     continente = i.Ciudades.Paises.Continente.Nombre
                                  };
             dgDadesInfra.DataSource = qrySenseFiltre.ToList();
         }
@@ -118,6 +119,7 @@ namespace NetStruct.Formularios.Gestión
                                    idInfaestructura = i.idInfraestructura,
                                    nombre = i.Nombre,
                                    direccion = i.Direccion,
+                                   coordenadas = i.Cordenadas,
                                    reseña = i.Reseña,
                                    horario = i.Horario,
                                    telefonoContacto = i.TelefonoContacto,
@@ -127,15 +129,16 @@ namespace NetStruct.Formularios.Gestión
                                    //categoria = i.CategoriaTipo.Nombre,
                                    ciudad = i.Ciudades.Nombre,
                                    pais = i.Ciudades.Paises.Nombre,
-                                   continente = i.Ciudades.Paises.Nombre
+                                   continente = i.Ciudades.Paises.Continente.Nombre
                                };
         }
 
         private void iniDgrid()
         {
-            dgDadesInfra.Columns["idInfaestructura"].HeaderText = "idInfraestructura";
+            dgDadesInfra.Columns["idInfaestructura"].Visible = false;
             dgDadesInfra.Columns["nombre"].HeaderText = "Nombre";
             dgDadesInfra.Columns["direccion"].HeaderText = "Direccion";
+            dgDadesInfra.Columns["coordenadas"].HeaderText = "Coordenadas";
             dgDadesInfra.Columns["reseña"].HeaderText = "Reseña";
             dgDadesInfra.Columns["horario"].HeaderText = "Horario";
             dgDadesInfra.Columns["telefonoContacto"].HeaderText = "Telefono Contacto";
@@ -206,13 +209,20 @@ namespace NetStruct.Formularios.Gestión
         private void btRemove_Click(object sender, EventArgs e)
         {
             fAMBInfraestructura = new FrmAMBInfraestructura('B', netStructContext);
+            fAMBInfraestructura.idInfraestructura = dgDadesInfra.SelectedRows[0].Cells["idInfaestructura"].Value.ToString();
             fAMBInfraestructura.ShowDialog();
+            MessageBox.Show("¿Estas seguro de que quieres eliminar la infraestructura seleccionada?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
 
         private void dgDadesInfra_DoubleClick(object sender, EventArgs e)
         {
             fAMBInfraestructura = new FrmAMBInfraestructura('M', netStructContext);
+
+            fAMBInfraestructura.idInfraestructura = dgDadesInfra.SelectedRows[0].Cells["idInfaestructura"].Value.ToString();
+
             fAMBInfraestructura.ShowDialog();
+
+            fAMBInfraestructura = null;
         }
     }
 }
