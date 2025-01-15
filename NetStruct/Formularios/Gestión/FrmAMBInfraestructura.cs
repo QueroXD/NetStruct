@@ -127,13 +127,7 @@ namespace NetStruct.Formularios.Gestión
             return capturada;
         }
 
-        private void btMaps_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://maps.google.com/?q=" + nLatitud.Value.ToString().Replace(",", ".") + "," + nLongitud.Value.ToString().Replace(",", "."));
-        }
-
-        /* Prueba esto si funciona te dejo la latitud y la longitud para que lo pruebes, es de la sagrada familia se supone que deberia funcionar 41.40411298539085, 2.1749749128010936
-            
+        /* Prueba esto si funciona te dejo la latitud y la longitud para que lo pruebes, es de la sagrada familia se supone que deberia funcionar 41.40411298539085, 2.1749749128010936 */
         private void btMaps_Click(object sender, EventArgs e)
         {
             string baseUrl = "https://maps.google.com/?";
@@ -150,7 +144,7 @@ namespace NetStruct.Formularios.Gestión
                 UseShellExecute = true // Esto es importante para evitar problemas en .NET Core/Framework
             });
         }
-        */
+        
 
         private void btCancelar_Click(object sender, EventArgs e)
         {

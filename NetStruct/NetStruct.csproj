@@ -226,6 +226,9 @@
     <None Include="Resources\add50.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\logoGoogleMaps.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModelNetStruct.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelNetStruct.edmx</DependentUpon>
@@ -236,7 +239,6 @@
       <DependentUpon>ModelNetStruct.edmx</DependentUpon>
       <LastGenOutput>ModelNetStruct.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\logoGoogleMaps.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
