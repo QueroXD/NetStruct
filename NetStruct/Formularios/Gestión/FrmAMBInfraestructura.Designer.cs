@@ -119,10 +119,11 @@
             // cbPaises
             // 
             this.cbPaises.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPaises.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPaises.FormattingEnabled = true;
             this.cbPaises.Location = new System.Drawing.Point(504, 92);
             this.cbPaises.Name = "cbPaises";
-            this.cbPaises.Size = new System.Drawing.Size(193, 24);
+            this.cbPaises.Size = new System.Drawing.Size(193, 28);
             this.cbPaises.TabIndex = 32;
             this.cbPaises.SelectedIndexChanged += new System.EventHandler(this.cbPaises_SelectedIndexChanged);
             // 
@@ -270,9 +271,10 @@
             // 
             // tbEmail
             // 
+            this.tbEmail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEmail.Location = new System.Drawing.Point(504, 169);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(193, 22);
+            this.tbEmail.Size = new System.Drawing.Size(193, 28);
             this.tbEmail.TabIndex = 49;
             // 
             // lbEmail
@@ -310,7 +312,6 @@
             this.cbCiutat.Name = "cbCiutat";
             this.cbCiutat.Size = new System.Drawing.Size(145, 28);
             this.cbCiutat.TabIndex = 51;
-            this.cbCiutat.SelectedIndexChanged += new System.EventHandler(this.cbCiutat_SelectedIndexChanged);
             // 
             // lbAdreca
             // 
@@ -349,12 +350,12 @@
             // cbCategoria
             // 
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCategoria.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(504, 131);
             this.cbCategoria.Name = "cbCategoria";
-            this.cbCategoria.Size = new System.Drawing.Size(193, 24);
+            this.cbCategoria.Size = new System.Drawing.Size(193, 28);
             this.cbCategoria.TabIndex = 55;
-            this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
             // lbHorari
             // 

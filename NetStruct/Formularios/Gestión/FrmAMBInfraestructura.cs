@@ -472,37 +472,16 @@ namespace NetStruct.Formularios.Gestión
 
         private void cbContinents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!bFirst && cbContinents.SelectedIndex != null)
+            if (cbContinents.SelectedValue != null && int.TryParse(cbContinents.SelectedValue.ToString(), out int idContinente))
             {
-                int idContinente = (int)cbContinents.SelectedValue;
-
                 omplirComboPaises(idContinente);
-
-                getDades();
             }
         }
-
-        private void cbCiutat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!bFirst && cbCiutat.SelectedIndex != null)
-            {
-                getDades();
-            }
-        }
-
         private void cbPaises_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!bFirst && cbPaises.SelectedIndex != null)
+            if (cbPaises.SelectedValue != null && int.TryParse(cbPaises.SelectedValue.ToString(), out int idPais))
             {
-                getDades();
-            }
-        }
-
-        private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!bFirst && cbCategoria.SelectedIndex != null)
-            {
-                getDades();
+                omplirComboCiudad(idPais);
             }
         }
     }
