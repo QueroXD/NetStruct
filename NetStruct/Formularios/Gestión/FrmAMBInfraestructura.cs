@@ -28,6 +28,8 @@ namespace NetStruct.Formularios.Gestión
 
         public int awaitTime = 2500;
 
+        Boolean bFirst = true;
+
         ClWeb web = new ClWeb();
 
         public FrmAMBInfraestructura(Char xop, NetStructEntities xnet)
@@ -40,9 +42,9 @@ namespace NetStruct.Formularios.Gestión
         private void FrmAMBInfraestructura_Load(object sender, EventArgs e)
         {
             omplirComboContinents();
-            omplirComboPaises();
+            omplirComboPaises((int)cbContinents.SelectedValue);
             omplirComboCategoria();
-            omplirComboCiudad();
+            omplirComboCiudad((int)cbPaises.SelectedValue);
 
             switch (op)
             {
@@ -418,10 +420,10 @@ namespace NetStruct.Formularios.Gestión
             cbContinents.SelectedIndex = 0;
         }
 
-        private void omplirComboPaises()
+        private void omplirComboPaises(int idContinente)
         {
             var qryPaises = from p in NetStructContext.Paises
-                            where p.idContinente == p.Continente.idContinente
+                            where p.idContinente == idContinente
                             orderby p.idPais
                             select new
                             {
@@ -451,10 +453,10 @@ namespace NetStruct.Formularios.Gestión
             cbCategoria.SelectedIndex = 0;
         }
 
-        private void omplirComboCiudad()
+        private void omplirComboCiudad(int idPais)
         {
             var qryCiudad = from c in NetStructContext.Ciudades
-                            where c.idPais == c.Paises.idPais
+                            where c.idPais == idPais
                             orderby c.idCiudad
                             select new
                             {
@@ -466,6 +468,42 @@ namespace NetStruct.Formularios.Gestión
             cbCiutat.DisplayMember = "ciudad";
             cbCiutat.ValueMember = "idCiudad";
             cbCiutat.SelectedIndex = 0;
+        }
+
+        private void cbContinents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!bFirst && cbContinents.SelectedIndex != null)
+            {
+                int idContinente = (int)cbContinents.SelectedValue;
+
+                omplirComboPaises(idContinente);
+
+                getDades();
+            }
+        }
+
+        private void cbCiutat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!bFirst && cbCiutat.SelectedIndex != null)
+            {
+                getDades();
+            }
+        }
+
+        private void cbPaises_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!bFirst && cbPaises.SelectedIndex != null)
+            {
+                getDades();
+            }
+        }
+
+        private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!bFirst && cbCategoria.SelectedIndex != null)
+            {
+                getDades();
+            }
         }
     }
 }

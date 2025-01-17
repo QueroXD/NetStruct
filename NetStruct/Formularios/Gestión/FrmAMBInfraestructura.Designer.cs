@@ -124,6 +124,7 @@
             this.cbPaises.Name = "cbPaises";
             this.cbPaises.Size = new System.Drawing.Size(193, 24);
             this.cbPaises.TabIndex = 32;
+            this.cbPaises.SelectedIndexChanged += new System.EventHandler(this.cbPaises_SelectedIndexChanged);
             // 
             // lbPaises
             // 
@@ -147,6 +148,7 @@
             this.cbContinents.Name = "cbContinents";
             this.cbContinents.Size = new System.Drawing.Size(145, 28);
             this.cbContinents.TabIndex = 30;
+            this.cbContinents.SelectedIndexChanged += new System.EventHandler(this.cbContinents_SelectedIndexChanged);
             // 
             // lbContinents
             // 
@@ -308,6 +310,7 @@
             this.cbCiutat.Name = "cbCiutat";
             this.cbCiutat.Size = new System.Drawing.Size(145, 28);
             this.cbCiutat.TabIndex = 51;
+            this.cbCiutat.SelectedIndexChanged += new System.EventHandler(this.cbCiutat_SelectedIndexChanged);
             // 
             // lbAdreca
             // 
@@ -351,6 +354,7 @@
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(193, 24);
             this.cbCategoria.TabIndex = 55;
+            this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
             // lbHorari
             // 
