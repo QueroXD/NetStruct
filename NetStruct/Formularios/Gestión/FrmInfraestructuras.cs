@@ -36,7 +36,6 @@ namespace NetStruct.Formularios.Gestión
             bFirst = false;
         }
 
-
         private void ckbFiltres_CheckedChanged(object sender, EventArgs e)
         {
             if (ckbFiltres.Checked)
@@ -204,6 +203,20 @@ namespace NetStruct.Formularios.Gestión
         {
             fAMBInfraestructura = new FrmAMBInfraestructura('A', netStructContext);
             fAMBInfraestructura.ShowDialog();
+
+            if (ckbFiltres.Checked)
+            {
+                getDadesSenseFiltre();
+            }
+            else
+            {
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+            }
+
+            if (fAMBInfraestructura.idInfraestructura != "") 
+            {
+                seleccionarFila(fAMBInfraestructura.idInfraestructura);
+            }
         }
 
         private void btRemove_Click(object sender, EventArgs e)
@@ -211,7 +224,20 @@ namespace NetStruct.Formularios.Gestión
             fAMBInfraestructura = new FrmAMBInfraestructura('B', netStructContext);
             fAMBInfraestructura.idInfraestructura = dgDadesInfra.SelectedRows[0].Cells["idInfaestructura"].Value.ToString();
             fAMBInfraestructura.ShowDialog();
-            MessageBox.Show("¿Estas seguro de que quieres eliminar la infraestructura seleccionada?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (ckbFiltres.Checked)
+            {
+                getDadesSenseFiltre();
+            }
+            else
+            {
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+            }
+
+            if (fAMBInfraestructura.idInfraestructura != "")
+            {
+                seleccionarFila(fAMBInfraestructura.idInfraestructura);
+            }
         }
 
         private void dgDadesInfra_DoubleClick(object sender, EventArgs e)
@@ -222,7 +248,40 @@ namespace NetStruct.Formularios.Gestión
 
             fAMBInfraestructura.ShowDialog();
 
+            if (ckbFiltres.Checked)
+            {
+                getDadesSenseFiltre();
+            }
+            else
+            {
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+            }
+
+            if (fAMBInfraestructura.idInfraestructura != "")
+            {
+                seleccionarFila(fAMBInfraestructura.idInfraestructura);
+            }
+
+
             fAMBInfraestructura = null;
+        }
+
+
+        private void seleccionarFila(string id)
+        {
+            int i = -1;
+            Boolean xbTrobat = false;
+
+            while (!xbTrobat && i < dgDadesInfra.Rows.Count)
+            {
+                i++;
+                xbTrobat = (dgDadesInfra.Rows[i].Cells["idInfaestructura"].Value.ToString() == id);
+            }
+            if (dgDadesInfra.Rows.Count > 0)
+            {
+                dgDadesInfra.Rows[i].Selected = true;
+                dgDadesInfra.FirstDisplayedScrollingRowIndex = i;
+            }
         }
     }
 }

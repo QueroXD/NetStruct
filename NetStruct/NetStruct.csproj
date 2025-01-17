@@ -239,6 +239,9 @@
       <DependentUpon>ModelNetStruct.edmx</DependentUpon>
       <LastGenOutput>ModelNetStruct.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\maps.png" />
+    <None Include="Resources\xcircle.png" />
+    <None Include="Resources\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

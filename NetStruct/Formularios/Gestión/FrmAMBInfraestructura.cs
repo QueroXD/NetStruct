@@ -24,7 +24,7 @@ namespace NetStruct.Formularios.Gestión
         private String urlWeb { get; set; } = "";
 
         private String miniaturaWeb { get; set; } = "";
-        public String idInfraestructura { get; set; } = "";
+        public String idInfraestructura { get; set; } = "1";
 
         public int awaitTime = 2500;
 
@@ -52,11 +52,38 @@ namespace NetStruct.Formularios.Gestión
                     this.Text = "Eliminar Infraestructura"; break;
                 case 'M':
                     this.Text = "Modificacio d'una Infraestructura"; break;
+                case 'C':
+                    this.Text = "Consultar Infraestructura"; break;
             }
 
             if (op != 'A')
             {
                 getDades();
+            }
+
+            if (op == 'C')
+            {
+                modoLectura();
+            }
+
+        }
+
+        private void modoLectura()
+        {
+            // Abrir el formulario maximizado
+            this.WindowState = FormWindowState.Maximized;
+
+            // Ocultar los botones de confirmar y cancelar
+            btConfirmar.Visible = false;
+            btCancelar.Visible = false;
+
+            // Desactivar todos los lbl, tb, cb, nup y pb
+            foreach (Control c in this.Controls)
+            {
+                if (c is Label || c is TextBox || c is ComboBox || c is NumericUpDown || c is PictureBox)
+                {
+                    c.Enabled = false;
+                }
             }
         }
 
@@ -80,7 +107,8 @@ namespace NetStruct.Formularios.Gestión
                                           Valoracion = i.Valoracion,
                                           Ciudad = i.Ciudades.Nombre,
                                           Pais = i.Ciudades.Paises.Nombre,
-                                          Continente = i.Ciudades.Paises.Continente.Nombre
+                                          Continente = i.Ciudades.Paises.Continente.Nombre,
+                                          MiniaturaWeb = i.MiniaturaWeb
                                       }).FirstOrDefault();
 
             if (qryInfraestructura != null)
@@ -99,7 +127,23 @@ namespace NetStruct.Formularios.Gestión
                 tbHorari.Text = qryInfraestructura.Horario;
                 tbLatitud.Text = qryInfraestructura.Cordenadas.Split(',')[0];
                 tbLongitud.Text = qryInfraestructura.Cordenadas.Split(',')[1];
+                pbWeb.Image = Base64ToImage(qryInfraestructura.MiniaturaWeb);
             }
+
+            var qryGaleria = (from g in NetStructContext.GaleriaDeImagenes
+                              where g.idInfraestructura == id
+                              select new
+                              {
+                                  Imagen = g.Imagen
+                              }).FirstOrDefault();
+
+            if (qryGaleria != null) 
+            {
+                base64Infra = qryGaleria.Imagen;
+                pbFoto.Image = Base64ToImage(base64Infra);
+                pbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+
         }
 
         private void btFoto_Click(object sender, EventArgs e)
@@ -149,6 +193,15 @@ namespace NetStruct.Formularios.Gestión
             }
         }
 
+        // convertir base64 a imagen
+        private Image Base64ToImage(string base64String)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            MemoryStream ms = new MemoryStream(imageBytes);
+            Image image = Image.FromStream(ms);
+            return image;
+        }
+
         private bool CaptureMyScreen()
         {
             bool capturada = false;
@@ -170,8 +223,8 @@ namespace NetStruct.Formularios.Gestión
 
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    pbWeb.Image = captureBitmap;
                     pbWeb.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pbWeb.Image = captureBitmap;
                     captureBitmap.Save(ms, ImageFormat.Jpeg);
                     byte[] byteImage = ms.ToArray();
                     miniaturaWeb = Convert.ToBase64String(byteImage);
@@ -262,6 +315,7 @@ namespace NetStruct.Formularios.Gestión
                 infra.EmailContacto = tbEmail.Text;
                 infra.TelefonoContacto = tbTelefon.Text;
                 infra.Horario = tbHorari.Text;
+                infra.Valoracion = (decimal)nupValoracio.Value;
                 infra.Cordenadas = tbLatitud.Text + "," + tbLongitud.Text;
                 infra.MiniaturaWeb = miniaturaWeb;
                 infra.idCiudad = (int)cbCiutat.SelectedValue;
@@ -301,6 +355,28 @@ namespace NetStruct.Formularios.Gestión
         private Boolean modificaInfraestructura()
         {
             Boolean xb = false;
+            Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
+            GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
+
+            if (infra != null)
+            {
+                infra.Nombre = tbNom.Text;
+                infra.Reseña = tbReseña.Text;
+                infra.MiniaturaWeb = miniaturaWeb;
+                infra.Direccion = tbDireccio.Text;
+                infra.UrlWeb = tbWeb.Text;
+                infra.EmailContacto = tbEmail.Text;
+                infra.TelefonoContacto = tbTelefon.Text;
+                infra.Valoracion = (decimal)nupValoracio.Value;
+                infra.Horario = tbHorari.Text;
+                infra.Cordenadas = tbLatitud.Text + "," + tbLongitud.Text;
+                infra.idCiudad = (int)cbCiutat.SelectedValue;
+
+                galeria.Imagen = base64Infra;
+                galeria.idInfraestructura = infra.idInfraestructura;
+
+                xb = ferCanvis();
+            }
 
             return (xb);
         }

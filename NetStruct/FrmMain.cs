@@ -21,6 +21,7 @@ namespace NetStruct
         FrmCategorias categorias = null;
         FrmInfraestructuras infraestructuras = null;
         FrmGaleria galeria = null;
+        FrmAMBInfraestructura fAMBInfraestructura = null;
 
         public FrmMain()
         {
@@ -112,14 +113,26 @@ namespace NetStruct
 
         private void galeriaDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //String xnom = "Galeria";
-            //if (!(ja_esta_obert(xnom)))
-            //{
-            //    galeria = new FrmGaleria(netStructContext);
-            //    galeria.Name = xnom;
-            //    galeria.MdiParent = this;
-            //    galeria.Show();
-            //}
+            String xnom = "Galeria";
+            if (!(ja_esta_obert(xnom)))
+            {
+                galeria = new FrmGaleria(netStructContext);
+                galeria.Name = xnom;
+                galeria.MdiParent = this;
+                galeria.Show();
+            }
+        }
+
+        private void consultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String xnom = "Consultar Infraestructura";
+            if (!(ja_esta_obert(xnom)))
+            {
+                fAMBInfraestructura = new FrmAMBInfraestructura('C', netStructContext);
+                fAMBInfraestructura.Name = xnom;
+                fAMBInfraestructura.MdiParent = this;
+                fAMBInfraestructura.Show();
+            }
         }
     }
 }
