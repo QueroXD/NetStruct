@@ -48,7 +48,7 @@ namespace NetStruct
             if (!(ja_esta_obert(xnom)))
             {
                 paises = new FrmPaises(netStructContext);
-                paises.Name = xnom;
+                paises.Text = xnom;
                 paises.MdiParent = this;
                 paises.Show();
             }
@@ -63,7 +63,7 @@ namespace NetStruct
 
             while ((x1 < this.MdiChildren.Length) && (!(xb)))
             {
-                xb = (this.MdiChildren[x1].Name == xnom);
+                xb = (this.MdiChildren[x1].Text == xnom);
                 x1++;
             }
             return (xb);
@@ -81,7 +81,7 @@ namespace NetStruct
             if (!(ja_esta_obert(xnom)))
             {
                 ciudades = new FrmCiudades(netStructContext);
-                ciudades.Name = xnom;
+                ciudades.Text = xnom;
                 ciudades.MdiParent = this;
                 ciudades.Show();
             }
@@ -93,7 +93,7 @@ namespace NetStruct
             if (!(ja_esta_obert(xnom)))
             {
                 categorias = new FrmCategorias(netStructContext);
-                categorias.Name = xnom;
+                categorias.Text = xnom;
                 categorias.MdiParent = this;
                 categorias.Show();
             }
@@ -105,7 +105,7 @@ namespace NetStruct
             if (!(ja_esta_obert(xnom)))
             {
                 infraestructuras = new FrmInfraestructuras(netStructContext);
-                infraestructuras.Name = xnom;
+                infraestructuras.Text = xnom;
                 infraestructuras.MdiParent = this;
                 infraestructuras.Show();
             }
@@ -117,7 +117,7 @@ namespace NetStruct
             if (!(ja_esta_obert(xnom)))
             {
                 galeria = new FrmGaleria(netStructContext);
-                galeria.Name = xnom;
+                galeria.Text = xnom;
                 galeria.MdiParent = this;
                 galeria.Show();
             }
@@ -129,7 +129,7 @@ namespace NetStruct
             if (!(ja_esta_obert(xnom)))
             {
                 fAMBInfraestructura = new FrmAMBInfraestructura('C', netStructContext);
-                fAMBInfraestructura.Name = xnom;
+                fAMBInfraestructura.Text = xnom;
                 fAMBInfraestructura.MdiParent = this;
                 fAMBInfraestructura.Show();
             }

@@ -116,6 +116,7 @@
             // 
             // cbCategoria
             // 
+            this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.Enabled = false;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(912, 17);
@@ -139,6 +140,7 @@
             // 
             // cbPaises
             // 
+            this.cbPaises.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPaises.Enabled = false;
             this.cbPaises.FormattingEnabled = true;
             this.cbPaises.Location = new System.Drawing.Point(501, 17);
@@ -162,6 +164,7 @@
             // 
             // cbContinents
             // 
+            this.cbContinents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbContinents.Enabled = false;
             this.cbContinents.FormattingEnabled = true;
             this.cbContinents.Location = new System.Drawing.Point(137, 17);
@@ -192,9 +195,10 @@
             this.Controls.Add(this.btRemove);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.dgDadesInfra);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmInfraestructuras";
-            this.Text = "FrmInfraestructuras";
+            this.Text = "Infraestructuras";
             this.Load += new System.EventHandler(this.FrmInfraestructuras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btAdd)).EndInit();

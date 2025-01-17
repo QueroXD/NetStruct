@@ -28,7 +28,7 @@ namespace NetStruct.Formularios.Gestión
         private void FrmInfraestructuras_Load(object sender, EventArgs e)
         {
             omplirComboContinents();
-            omplirComboPaises();
+            omplirComboPaises((int)cbContinents.SelectedValue);
             omplirComboCategoria();
             getDadesSenseFiltre();
             iniDgrid();
@@ -53,7 +53,7 @@ namespace NetStruct.Formularios.Gestión
 
                 if (cbContinents.SelectedIndex != -1)
                 {
-                    getDadesAmbFiltre((int)cbContinents.SelectedValue,(int)cbPaises.SelectedValue,(int)cbCategoria.SelectedValue);
+                    getDadesAmbFiltre((int)cbContinents.SelectedValue,(int)cbPaises.SelectedValue);
                 }
             }
         }
@@ -66,8 +66,7 @@ namespace NetStruct.Formularios.Gestión
 
                 omplirComboPaises(idContinente);
 
-
-                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
         }
 
@@ -75,7 +74,7 @@ namespace NetStruct.Formularios.Gestión
         {
             if (!bFirst && cbPaises.SelectedIndex != null)
             {
-                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
         }
 
@@ -83,7 +82,7 @@ namespace NetStruct.Formularios.Gestión
         {
             if (!bFirst && cbCategoria.SelectedIndex != null)
             {
-                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
         }
 
@@ -111,7 +110,7 @@ namespace NetStruct.Formularios.Gestión
             dgDadesInfra.DataSource = qrySenseFiltre.ToList();
         }
 
-        private void getDadesAmbFiltre(int idContinente, int idPaises, int idCategoria)
+        private void getDadesAmbFiltre(int idContinente, int idPaises)
         {
             var qryAmbFiltre = from i in netStructContext.Infraestructura
                                where i.Ciudades.Paises.idPais == idPaises
@@ -215,7 +214,7 @@ namespace NetStruct.Formularios.Gestión
             }
             else
             {
-                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
 
             if (fAMBInfraestructura.idInfraestructura != "") 
@@ -236,7 +235,7 @@ namespace NetStruct.Formularios.Gestión
             }
             else
             {
-                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
 
             if (fAMBInfraestructura.idInfraestructura != "")
@@ -259,7 +258,7 @@ namespace NetStruct.Formularios.Gestión
             }
             else
             {
-                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
+                getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
 
             if (fAMBInfraestructura.idInfraestructura != "")
