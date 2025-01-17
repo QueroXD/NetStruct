@@ -65,6 +65,9 @@
             this.btConfirmar = new System.Windows.Forms.PictureBox();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.pbWeb = new System.Windows.Forms.PictureBox();
+            this.lbGaleria = new System.Windows.Forms.Label();
+            this.btCargarGaleria = new System.Windows.Forms.Button();
+            this.flpGaleria = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.nupValoracio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btMaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btCancelar)).BeginInit();
@@ -196,7 +199,7 @@
             this.lbImatge.Name = "lbImatge";
             this.lbImatge.Size = new System.Drawing.Size(207, 30);
             this.lbImatge.TabIndex = 36;
-            this.lbImatge.Text = "Galeria:";
+            this.lbImatge.Text = "Foto Principal:";
             this.lbImatge.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btFoto
@@ -216,7 +219,7 @@
             this.lbLatitud.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbLatitud.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLatitud.ForeColor = System.Drawing.Color.Black;
-            this.lbLatitud.Location = new System.Drawing.Point(277, 283);
+            this.lbLatitud.Location = new System.Drawing.Point(11, 284);
             this.lbLatitud.Name = "lbLatitud";
             this.lbLatitud.Size = new System.Drawing.Size(151, 28);
             this.lbLatitud.TabIndex = 40;
@@ -227,7 +230,7 @@
             // 
             this.btPrevisualizar.BackColor = System.Drawing.Color.White;
             this.btPrevisualizar.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrevisualizar.Location = new System.Drawing.Point(955, 357);
+            this.btPrevisualizar.Location = new System.Drawing.Point(952, 317);
             this.btPrevisualizar.Name = "btPrevisualizar";
             this.btPrevisualizar.Size = new System.Drawing.Size(149, 29);
             this.btPrevisualizar.TabIndex = 41;
@@ -384,7 +387,7 @@
             this.lbLongitud.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbLongitud.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLongitud.ForeColor = System.Drawing.Color.Black;
-            this.lbLongitud.Location = new System.Drawing.Point(11, 283);
+            this.lbLongitud.Location = new System.Drawing.Point(270, 284);
             this.lbLongitud.Name = "lbLongitud";
             this.lbLongitud.Size = new System.Drawing.Size(151, 28);
             this.lbLongitud.TabIndex = 58;
@@ -404,7 +407,7 @@
             // tbLatitud
             // 
             this.tbLatitud.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLatitud.Location = new System.Drawing.Point(434, 282);
+            this.tbLatitud.Location = new System.Drawing.Point(181, 283);
             this.tbLatitud.Name = "tbLatitud";
             this.tbLatitud.Size = new System.Drawing.Size(82, 28);
             this.tbLatitud.TabIndex = 63;
@@ -412,7 +415,7 @@
             // tbLongitud
             // 
             this.tbLongitud.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLongitud.Location = new System.Drawing.Point(181, 283);
+            this.tbLongitud.Location = new System.Drawing.Point(434, 284);
             this.tbLongitud.Name = "tbLongitud";
             this.tbLongitud.Size = new System.Drawing.Size(82, 28);
             this.tbLongitud.TabIndex = 64;
@@ -466,16 +469,51 @@
             // 
             this.pbWeb.Location = new System.Drawing.Point(746, 19);
             this.pbWeb.Name = "pbWeb";
-            this.pbWeb.Size = new System.Drawing.Size(620, 390);
+            this.pbWeb.Size = new System.Drawing.Size(527, 277);
             this.pbWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbWeb.TabIndex = 35;
             this.pbWeb.TabStop = false;
+            // 
+            // lbGaleria
+            // 
+            this.lbGaleria.BackColor = System.Drawing.Color.Coral;
+            this.lbGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbGaleria.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGaleria.ForeColor = System.Drawing.Color.Black;
+            this.lbGaleria.Location = new System.Drawing.Point(703, 319);
+            this.lbGaleria.Name = "lbGaleria";
+            this.lbGaleria.Size = new System.Drawing.Size(118, 30);
+            this.lbGaleria.TabIndex = 68;
+            this.lbGaleria.Text = "Galeria: ";
+            this.lbGaleria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btCargarGaleria
+            // 
+            this.btCargarGaleria.BackColor = System.Drawing.Color.White;
+            this.btCargarGaleria.Location = new System.Drawing.Point(918, 630);
+            this.btCargarGaleria.Name = "btCargarGaleria";
+            this.btCargarGaleria.Size = new System.Drawing.Size(149, 29);
+            this.btCargarGaleria.TabIndex = 70;
+            this.btCargarGaleria.Text = "Carregar Foto";
+            this.btCargarGaleria.UseVisualStyleBackColor = false;
+            this.btCargarGaleria.Click += new System.EventHandler(this.btCargarGaleria_Click);
+            // 
+            // flpGaleria
+            // 
+            this.flpGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpGaleria.Location = new System.Drawing.Point(703, 357);
+            this.flpGaleria.Name = "flpGaleria";
+            this.flpGaleria.Size = new System.Drawing.Size(570, 267);
+            this.flpGaleria.TabIndex = 72;
             // 
             // FrmAMBInfraestructura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1285, 672);
+            this.Controls.Add(this.flpGaleria);
+            this.Controls.Add(this.btCargarGaleria);
+            this.Controls.Add(this.lbGaleria);
             this.Controls.Add(this.btMaps);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btConfirmar);
@@ -567,5 +605,8 @@
         private System.Windows.Forms.PictureBox btCancelar;
         private System.Windows.Forms.PictureBox btMaps;
         private System.Windows.Forms.PictureBox pbWeb;
+        private System.Windows.Forms.Label lbGaleria;
+        private System.Windows.Forms.Button btCargarGaleria;
+        private System.Windows.Forms.FlowLayoutPanel flpGaleria;
     }
 }

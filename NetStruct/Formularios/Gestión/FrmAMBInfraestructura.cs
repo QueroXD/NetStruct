@@ -30,8 +30,8 @@ namespace NetStruct.Formularios.Gestión
 
         Boolean bFirst = true;
 
-        ClWeb web = new ClWeb();
-
+        private List<string> listaTemporalDeImagenes = new List<string>();
+        
         public FrmAMBInfraestructura(Char xop, NetStructEntities xnet)
         {
             InitializeComponent();
@@ -190,8 +190,6 @@ namespace NetStruct.Formularios.Gestión
                 {
                     window.Close();
                 }
-
-                MessageBox.Show("Pantalla capturada");
             }
         }
 
@@ -202,6 +200,17 @@ namespace NetStruct.Formularios.Gestión
             MemoryStream ms = new MemoryStream(imageBytes);
             Image image = Image.FromStream(ms);
             return image;
+        }
+
+        // convertir imagen a base64
+        private string ImageToBase64(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Jpeg);
+                byte[] imageBytes = ms.ToArray();
+                return Convert.ToBase64String(imageBytes);
+            }
         }
 
         private bool CaptureMyScreen()
@@ -308,34 +317,60 @@ namespace NetStruct.Formularios.Gestión
 
             try
             {
-                Infraestructura infra = new Infraestructura();
-                GaleriaDeImagenes galeria = new GaleriaDeImagenes();
-                infra.Nombre = tbNom.Text;
-                infra.Reseña = tbReseña.Text;
-                infra.Direccion = tbDireccio.Text;
-                infra.UrlWeb = tbWeb.Text;
-                infra.EmailContacto = tbEmail.Text;
-                infra.TelefonoContacto = tbTelefon.Text;
-                infra.Horario = tbHorari.Text;
-                infra.Valoracion = (decimal)nupValoracio.Value;
-                infra.Cordenadas = tbLatitud.Text + "," + tbLongitud.Text;
-                infra.MiniaturaWeb = miniaturaWeb;
-                infra.idCiudad = (int)cbCiutat.SelectedValue;
-                galeria.Imagen = base64Infra;
-                galeria.idInfraestructura = infra.idInfraestructura;
+                Infraestructura infra = new Infraestructura
+                {
+                    Nombre = tbNom.Text,
+                    Reseña = tbReseña.Text,
+                    Direccion = tbDireccio.Text,
+                    UrlWeb = tbWeb.Text,
+                    EmailContacto = tbEmail.Text,
+                    TelefonoContacto = tbTelefon.Text,
+                    Horario = tbHorari.Text,
+                    Valoracion = (decimal)nupValoracio.Value,
+                    Cordenadas = tbLatitud.Text + "," + tbLongitud.Text,
+                    MiniaturaWeb = miniaturaWeb,
+                    idCiudad = (int)cbCiutat.SelectedValue
+                };
 
                 NetStructContext.Infraestructura.Add(infra);
-                NetStructContext.GaleriaDeImagenes.Add(galeria);
                 ferCanvis();
+
+                int idInfraestructura = infra.idInfraestructura;
+
+                if (!string.IsNullOrEmpty(base64Infra))
+                {
+                    GaleriaDeImagenes galeriaBase64Infra = new GaleriaDeImagenes
+                    {
+                        Imagen = base64Infra,
+                        idInfraestructura = idInfraestructura
+                    };
+                    NetStructContext.GaleriaDeImagenes.Add(galeriaBase64Infra);
+                }
+
+                foreach (string base64Image in listaTemporalDeImagenes)
+                {
+                    GaleriaDeImagenes galeria = new GaleriaDeImagenes
+                    {
+                        Imagen = base64Image,
+                        idInfraestructura = idInfraestructura
+                    };
+                    NetStructContext.GaleriaDeImagenes.Add(galeria);
+                }
+
+                ferCanvis();
+
+                listaTemporalDeImagenes.Clear();
+
                 xb = true;
             }
             catch (Exception excp)
             {
-                MessageBox.Show(excp.InnerException.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(excp.InnerException?.ToString() ?? excp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return (xb);
+            return xb;
         }
+
 
         private Boolean baixaInfraestructura()
         {
@@ -357,29 +392,55 @@ namespace NetStruct.Formularios.Gestión
         private Boolean modificaInfraestructura()
         {
             Boolean xb = false;
-            Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
-            GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
 
-            if (infra != null)
+            try
             {
-                infra.Nombre = tbNom.Text;
-                infra.Reseña = tbReseña.Text;
-                infra.MiniaturaWeb = miniaturaWeb;
-                infra.Direccion = tbDireccio.Text;
-                infra.UrlWeb = tbWeb.Text;
-                infra.EmailContacto = tbEmail.Text;
-                infra.TelefonoContacto = tbTelefon.Text;
-                infra.Valoracion = (decimal)nupValoracio.Value;
-                infra.Horario = tbHorari.Text;
-                infra.Cordenadas = tbLatitud.Text + "," + tbLongitud.Text;
-                infra.idCiudad = (int)cbCiutat.SelectedValue;
+                CargarListaGaleria();
 
-                galeria.Imagen = base64Infra;
-                galeria.idInfraestructura = infra.idInfraestructura;
+                Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
+                GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
 
-                xb = ferCanvis();
+                if (infra != null)
+                {
+                    infra.Nombre = tbNom.Text;
+                    infra.Reseña = tbReseña.Text;
+                    infra.MiniaturaWeb = ImageToBase64(pbWeb.Image);
+                    infra.Direccion = tbDireccio.Text;
+                    infra.UrlWeb = tbWeb.Text;
+                    infra.EmailContacto = tbEmail.Text;
+                    infra.TelefonoContacto = tbTelefon.Text;
+                    infra.Valoracion = (decimal)nupValoracio.Value;
+                    infra.Horario = tbHorari.Text;
+                    infra.Cordenadas = tbLatitud.Text + "," + tbLongitud.Text;
+                    infra.idCiudad = (int)cbCiutat.SelectedValue;
+
+                    if (galeria != null)
+                    {
+                        galeria.Imagen = base64Infra;
+                    }
+
+                    var imagenesExistentes = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura && g != galeria).ToList();
+
+                    NetStructContext.GaleriaDeImagenes.RemoveRange(imagenesExistentes);
+
+
+                    foreach (string base64Image in listaTemporalDeImagenes)
+                    {
+                        GaleriaDeImagenes nuevaImagen = new GaleriaDeImagenes
+                        {
+                            Imagen = base64Image,
+                            idInfraestructura = infra.idInfraestructura
+                        };
+
+                        NetStructContext.GaleriaDeImagenes.Add(nuevaImagen);
+                    }
+                    xb = ferCanvis();
+                    listaTemporalDeImagenes.Clear();
+                }
+            } catch (Exception excp)
+            {
+                MessageBox.Show(excp.InnerException?.ToString() ?? excp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             return (xb);
         }
 
@@ -484,5 +545,76 @@ namespace NetStruct.Formularios.Gestión
                 omplirComboCiudad(idPais);
             }
         }
+
+        private void btCargarGaleria_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp",
+                Multiselect = true 
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string filePath in openFileDialog.FileNames)
+                {
+                    try
+                    {
+                        Bitmap image = new Bitmap(filePath);
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            image.Save(ms, ImageFormat.Jpeg);
+                            byte[] imageBytes = ms.ToArray();
+                            string base64Image = Convert.ToBase64String(imageBytes);
+
+                           listaTemporalDeImagenes.Add(base64Image);
+
+                           actualizarGaleriaVisual(base64Image);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al cargar la imagen: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                MessageBox.Show("Imágenes cargadas correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void actualizarGaleriaVisual(string base64Image)
+        {
+            PictureBox pictureBox = new PictureBox
+            {
+                Image = Base64ToImage(base64Image),
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Width = 100,
+                Height = 100,
+                Margin = new Padding(5)
+            };
+
+            flpGaleria.Controls.Add(pictureBox);
+        }
+
+        private void CargarListaGaleria()
+        {
+            try
+            {
+                listaTemporalDeImagenes.Clear();
+
+                int id = Convert.ToInt32(idInfraestructura);
+                var imagenesGaleria = NetStructContext.GaleriaDeImagenes
+                    .Where(g => g.idInfraestructura == id)
+                    .Select(g => g.Imagen)
+                    .ToList();
+
+                listaTemporalDeImagenes.AddRange(imagenesGaleria);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la galería de imágenes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
