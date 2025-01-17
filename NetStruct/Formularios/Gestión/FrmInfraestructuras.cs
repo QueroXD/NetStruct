@@ -62,6 +62,11 @@ namespace NetStruct.Formularios.Gestión
         {
             if (!bFirst && cbContinents.SelectedIndex != null)
             {
+                int idContinente = (int)cbContinents.SelectedValue;
+
+                omplirComboPaises(idContinente);
+
+
                 getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue, (int)cbCategoria.SelectedValue);
             }
         }
@@ -166,10 +171,10 @@ namespace NetStruct.Formularios.Gestión
             cbContinents.SelectedIndex = 0;
         }
 
-        private void omplirComboPaises()
+        private void omplirComboPaises(int idContinente)
         {
             var qryPaises = from p in netStructContext.Paises
-                            where p.idContinente == p.Continente.idContinente
+                            where p.idContinente == idContinente
                             orderby p.idPais
                             select new
                             {
