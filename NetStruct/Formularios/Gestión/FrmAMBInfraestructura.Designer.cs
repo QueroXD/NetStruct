@@ -474,6 +474,7 @@
             this.pbWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbWeb.TabIndex = 35;
             this.pbWeb.TabStop = false;
+            this.pbWeb.Click += new System.EventHandler(this.pbWeb_Click);
             // 
             // lbGaleria
             // 

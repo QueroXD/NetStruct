@@ -77,7 +77,6 @@ namespace NetStruct.Formularios
                             SizeMode = PictureBoxSizeMode.Zoom,
                             Size = new Size(200, 200),
                             Margin = new Padding(10),
-                            BorderStyle = BorderStyle.FixedSingle
                         };
 
                         flwGaleria.Controls.Add(pictureBox);

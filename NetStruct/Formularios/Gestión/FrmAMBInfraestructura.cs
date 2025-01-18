@@ -29,7 +29,7 @@ namespace NetStruct.Formularios.Gestión
         public int awaitTime = 2500;
 
         private List<string> listaTemporalDeImagenes = new List<string>();
-        
+
         public FrmAMBInfraestructura(Char xop, NetStructEntities xnet)
         {
             InitializeComponent();
@@ -140,7 +140,7 @@ namespace NetStruct.Formularios.Gestión
                                   Imagen = g.Imagen
                               }).FirstOrDefault();
 
-            if (qryGaleria != null) 
+            if (qryGaleria != null)
             {
                 base64Infra = qryGaleria.Imagen;
                 pbFoto.Image = Base64ToImage(base64Infra);
@@ -272,7 +272,7 @@ namespace NetStruct.Formularios.Gestión
                 UseShellExecute = true
             });
         }
-        
+
 
         private void btCancelar_Click(object sender, EventArgs e)
         {
@@ -571,7 +571,7 @@ namespace NetStruct.Formularios.Gestión
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Image Files (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp",
-                Multiselect = true 
+                Multiselect = true
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -587,9 +587,9 @@ namespace NetStruct.Formularios.Gestión
                             byte[] imageBytes = ms.ToArray();
                             string base64Image = Convert.ToBase64String(imageBytes);
 
-                           listaTemporalDeImagenes.Add(base64Image);
+                            listaTemporalDeImagenes.Add(base64Image);
 
-                           actualizarGaleriaVisual(base64Image);
+                            actualizarGaleriaVisual(base64Image);
                         }
                     }
                     catch (Exception ex)
@@ -652,6 +652,30 @@ namespace NetStruct.Formularios.Gestión
             flpGaleria.Controls.Clear();
             listaTemporalDeImagenes.Clear();
             CargarListaGaleria();
+        }
+
+        private void pbWeb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string url = tbWeb.Text;
+
+                if (!string.IsNullOrEmpty(url))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = url,
+                        UseShellExecute = true
+                    });
+                } else
+                {
+                    MessageBox.Show("No hay URL disponible para abrir.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al intentar abrir la URL: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
