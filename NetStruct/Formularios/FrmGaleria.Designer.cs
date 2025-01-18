@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flwGaleria = new System.Windows.Forms.FlowLayoutPanel();
             this.cbInfraestructuras = new System.Windows.Forms.ComboBox();
             this.chkTodos = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -41,12 +41,13 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // flowLayoutPanel1
+            // flwGaleria
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 34);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1878, 987);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flwGaleria.AutoScroll = true;
+            this.flwGaleria.Location = new System.Drawing.Point(12, 34);
+            this.flwGaleria.Name = "flwGaleria";
+            this.flwGaleria.Size = new System.Drawing.Size(1878, 987);
+            this.flwGaleria.TabIndex = 0;
             // 
             // cbInfraestructuras
             // 
@@ -81,9 +82,9 @@
             this.ClientSize = new System.Drawing.Size(1902, 1033);
             this.Controls.Add(this.chkTodos);
             this.Controls.Add(this.cbInfraestructuras);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flwGaleria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmGaleria";
             this.Text = "FrmGaleria";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -96,7 +97,7 @@
         #endregion
 
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flwGaleria;
         private System.Windows.Forms.ComboBox cbInfraestructuras;
         private System.Windows.Forms.CheckBox chkTodos;
     }

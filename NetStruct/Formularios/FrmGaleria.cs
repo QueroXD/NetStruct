@@ -50,7 +50,7 @@ namespace NetStruct.Formularios
         private void CargarImagenes(int? idInfraestructura = null)
         {
             // Limpiar el FlowLayoutPanel antes de agregar nuevas imágenes
-            flowLayoutPanel1.Controls.Clear();
+            flwGaleria.Controls.Clear();
 
             // Usar el contexto existente
             var context = netStructContext;
@@ -80,7 +80,7 @@ namespace NetStruct.Formularios
                             BorderStyle = BorderStyle.FixedSingle
                         };
 
-                        flowLayoutPanel1.Controls.Add(pictureBox);
+                        flwGaleria.Controls.Add(pictureBox);
                     }
                 }
                 catch (Exception ex)
@@ -89,10 +89,6 @@ namespace NetStruct.Formularios
                 }
             }
         }
-
-
-
-
 
         private void cbInfraestructuras_SelectedIndexChanged(object sender, EventArgs e)
         {

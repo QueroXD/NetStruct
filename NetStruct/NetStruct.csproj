@@ -226,9 +226,6 @@
     <None Include="Resources\add50.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logoGoogleMaps.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\maps.png" />
     <None Include="Resources\xcircle.png" />
     <None Include="Resources\check.png" />

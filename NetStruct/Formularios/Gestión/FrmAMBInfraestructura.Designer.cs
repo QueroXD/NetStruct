@@ -68,6 +68,7 @@
             this.lbGaleria = new System.Windows.Forms.Label();
             this.btCargarGaleria = new System.Windows.Forms.Button();
             this.flpGaleria = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbInfraestructura = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nupValoracio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btMaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btCancelar)).BeginInit();
@@ -500,17 +501,31 @@
             // 
             // flpGaleria
             // 
+            this.flpGaleria.AutoScroll = true;
             this.flpGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpGaleria.Location = new System.Drawing.Point(703, 357);
             this.flpGaleria.Name = "flpGaleria";
             this.flpGaleria.Size = new System.Drawing.Size(570, 267);
             this.flpGaleria.TabIndex = 72;
             // 
+            // cbInfraestructura
+            // 
+            this.cbInfraestructura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbInfraestructura.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbInfraestructura.FormattingEnabled = true;
+            this.cbInfraestructura.Location = new System.Drawing.Point(177, 19);
+            this.cbInfraestructura.Name = "cbInfraestructura";
+            this.cbInfraestructura.Size = new System.Drawing.Size(520, 28);
+            this.cbInfraestructura.TabIndex = 73;
+            this.cbInfraestructura.Visible = false;
+            this.cbInfraestructura.SelectedIndexChanged += new System.EventHandler(this.cbInfraestructura_SelectedIndexChanged);
+            // 
             // FrmAMBInfraestructura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1285, 672);
+            this.Controls.Add(this.cbInfraestructura);
             this.Controls.Add(this.flpGaleria);
             this.Controls.Add(this.btCargarGaleria);
             this.Controls.Add(this.lbGaleria);
@@ -608,5 +623,6 @@
         private System.Windows.Forms.Label lbGaleria;
         private System.Windows.Forms.Button btCargarGaleria;
         private System.Windows.Forms.FlowLayoutPanel flpGaleria;
+        private System.Windows.Forms.ComboBox cbInfraestructura;
     }
 }

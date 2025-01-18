@@ -28,8 +28,6 @@ namespace NetStruct.Formularios.Gestión
 
         public int awaitTime = 2500;
 
-        Boolean bFirst = true;
-
         private List<string> listaTemporalDeImagenes = new List<string>();
         
         public FrmAMBInfraestructura(Char xop, NetStructEntities xnet)
@@ -60,12 +58,17 @@ namespace NetStruct.Formularios.Gestión
 
             if (op != 'A')
             {
-                getDades();
+                getDades(Convert.ToInt32(idInfraestructura));
+                CargarListaGaleria();
             }
 
             if (op == 'C')
             {
+                omplirComboInfraestructura();
                 modoLectura();
+                tbNom.Visible = false;
+                cbInfraestructura.Visible = true;
+                cbInfraestructura.Enabled = true;
             }
 
         }
@@ -89,10 +92,8 @@ namespace NetStruct.Formularios.Gestión
             }
         }
 
-        private void getDades()
+        private void getDades(int id)
         {
-            int id = Convert.ToInt32(idInfraestructura);
-
             var qryInfraestructura = (from i in NetStructContext.Infraestructura
                                       where i.idInfraestructura == id
                                       select new
@@ -145,7 +146,6 @@ namespace NetStruct.Formularios.Gestión
                 pbFoto.Image = Base64ToImage(base64Infra);
                 pbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
             }
-
         }
 
         private void btFoto_Click(object sender, EventArgs e)
@@ -395,7 +395,6 @@ namespace NetStruct.Formularios.Gestión
 
             try
             {
-                CargarListaGaleria();
 
                 Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
                 GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
@@ -434,6 +433,7 @@ namespace NetStruct.Formularios.Gestión
 
                         NetStructContext.GaleriaDeImagenes.Add(nuevaImagen);
                     }
+
                     xb = ferCanvis();
                     listaTemporalDeImagenes.Clear();
                 }
@@ -531,6 +531,26 @@ namespace NetStruct.Formularios.Gestión
             cbCiutat.SelectedIndex = 0;
         }
 
+        private void omplirComboInfraestructura()
+        {
+            cbInfraestructura.SelectedIndexChanged -= cbInfraestructura_SelectedIndexChanged; // Desactivar evento
+
+            var qryInfraestructura = from i in NetStructContext.Infraestructura
+                                     orderby i.idInfraestructura
+                                     select new
+                                     {
+                                         idInfraestructura = i.idInfraestructura,
+                                         nombre = i.Nombre
+                                     };
+
+            cbInfraestructura.DataSource = qryInfraestructura.ToList();
+            cbInfraestructura.DisplayMember = "nombre";
+            cbInfraestructura.ValueMember = "idInfraestructura";
+            cbInfraestructura.SelectedIndex = 0;
+
+            cbInfraestructura.SelectedIndexChanged += cbInfraestructura_SelectedIndexChanged; // Reactivar evento
+        }
+
         private void cbContinents_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbContinents.SelectedValue != null && int.TryParse(cbContinents.SelectedValue.ToString(), out int idContinente))
@@ -603,18 +623,35 @@ namespace NetStruct.Formularios.Gestión
                 listaTemporalDeImagenes.Clear();
 
                 int id = Convert.ToInt32(idInfraestructura);
-                var imagenesGaleria = NetStructContext.GaleriaDeImagenes
-                    .Where(g => g.idInfraestructura == id)
-                    .Select(g => g.Imagen)
-                    .ToList();
+
+                var imagenesGaleria = (from g in NetStructContext.GaleriaDeImagenes
+                                       where g.idInfraestructura == id
+                                       orderby g.idImagen
+                                       select g.Imagen)
+                                      .Skip(1) // Filtra a partir de la segunda imagen
+                                      .ToList();
 
                 listaTemporalDeImagenes.AddRange(imagenesGaleria);
+
+                foreach (string base64Image in imagenesGaleria)
+                {
+                    actualizarGaleriaVisual(base64Image);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al cargar la galería de imágenes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void cbInfraestructura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(cbInfraestructura.SelectedValue);
+            idInfraestructura = id.ToString();
+            getDades(id);
 
+            flpGaleria.Controls.Clear();
+            listaTemporalDeImagenes.Clear();
+            CargarListaGaleria();
+        }
     }
 }

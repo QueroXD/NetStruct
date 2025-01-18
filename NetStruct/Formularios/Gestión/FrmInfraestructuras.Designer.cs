@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btRemove = new System.Windows.Forms.PictureBox();
-            this.btAdd = new System.Windows.Forms.PictureBox();
             this.dgDadesInfra = new System.Windows.Forms.DataGridView();
             this.gbFiltres = new System.Windows.Forms.GroupBox();
             this.ckbFiltres = new System.Windows.Forms.CheckBox();
@@ -39,35 +37,13 @@
             this.lbPaises = new System.Windows.Forms.Label();
             this.cbContinents = new System.Windows.Forms.ComboBox();
             this.lbContinents = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.btRemove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btAdd)).BeginInit();
+            this.btRemove = new System.Windows.Forms.PictureBox();
+            this.btAdd = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgDadesInfra)).BeginInit();
             this.gbFiltres.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btRemove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btAdd)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btRemove
-            // 
-            this.btRemove.Image = global::NetStruct.Properties.Resources.cancel50;
-            this.btRemove.Location = new System.Drawing.Point(1299, 580);
-            this.btRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btRemove.Name = "btRemove";
-            this.btRemove.Size = new System.Drawing.Size(50, 50);
-            this.btRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.btRemove.TabIndex = 17;
-            this.btRemove.TabStop = false;
-            this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
-            // 
-            // btAdd
-            // 
-            this.btAdd.Image = global::NetStruct.Properties.Resources.add50;
-            this.btAdd.Location = new System.Drawing.Point(1226, 580);
-            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(50, 50);
-            this.btAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.btAdd.TabIndex = 16;
-            this.btAdd.TabStop = false;
-            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // dgDadesInfra
             // 
@@ -79,6 +55,7 @@
             this.dgDadesInfra.Location = new System.Drawing.Point(12, 65);
             this.dgDadesInfra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgDadesInfra.Name = "dgDadesInfra";
+            this.dgDadesInfra.RowHeadersVisible = false;
             this.dgDadesInfra.RowHeadersWidth = 51;
             this.dgDadesInfra.RowTemplate.Height = 24;
             this.dgDadesInfra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -186,6 +163,30 @@
             this.lbContinents.TabIndex = 24;
             this.lbContinents.Text = "Continents";
             // 
+            // btRemove
+            // 
+            this.btRemove.Image = global::NetStruct.Properties.Resources.cancel50;
+            this.btRemove.Location = new System.Drawing.Point(1299, 580);
+            this.btRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btRemove.Name = "btRemove";
+            this.btRemove.Size = new System.Drawing.Size(50, 50);
+            this.btRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btRemove.TabIndex = 17;
+            this.btRemove.TabStop = false;
+            this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
+            // 
+            // btAdd
+            // 
+            this.btAdd.Image = global::NetStruct.Properties.Resources.add50;
+            this.btAdd.Location = new System.Drawing.Point(1226, 580);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(50, 50);
+            this.btAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btAdd.TabIndex = 16;
+            this.btAdd.TabStop = false;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+            // 
             // FrmInfraestructuras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -200,11 +201,11 @@
             this.Name = "FrmInfraestructuras";
             this.Text = "Infraestructuras";
             this.Load += new System.EventHandler(this.FrmInfraestructuras_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btRemove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgDadesInfra)).EndInit();
             this.gbFiltres.ResumeLayout(false);
             this.gbFiltres.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btRemove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btAdd)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
