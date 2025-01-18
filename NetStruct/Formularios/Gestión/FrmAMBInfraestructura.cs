@@ -108,10 +108,13 @@ namespace NetStruct.Formularios.Gestión
                                           EmailContacto = i.EmailContacto,
                                           UrlWeb = i.UrlWeb,
                                           Valoracion = i.Valoracion,
+                                          MiniaturaWeb = i.MiniaturaWeb,
                                           Ciudad = i.Ciudades.Nombre,
                                           Pais = i.Ciudades.Paises.Nombre,
                                           Continente = i.Ciudades.Paises.Continente.Nombre,
-                                          MiniaturaWeb = i.MiniaturaWeb
+                                          idCiudad = i.idCiudad,
+                                          idPais = i.Ciudades.idPais,
+                                          idContinente = i.Ciudades.Paises.idContinente
                                       }).FirstOrDefault();
 
             if (qryInfraestructura != null)
@@ -123,6 +126,9 @@ namespace NetStruct.Formularios.Gestión
                 cbPaises.DisplayMember = qryInfraestructura.Pais;
                 cbCiutat.DisplayMember = qryInfraestructura.Ciudad;
                 cbCategoria.SelectedValue = qryInfraestructura.CategoriaTipo;
+                cbPaises.SelectedValue = qryInfraestructura.idPais;
+                cbContinents.SelectedValue = qryInfraestructura.idContinente;
+                cbCiutat.SelectedValue = qryInfraestructura.idCiudad;
                 tbDireccio.Text = qryInfraestructura.Direccion;
                 nupValoracio.Value = (decimal)qryInfraestructura.Valoracion;
                 tbTelefon.Text = qryInfraestructura.TelefonoContacto;
