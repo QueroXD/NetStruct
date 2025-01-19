@@ -69,6 +69,7 @@ namespace NetStruct.Formularios.Gestión
                 tbNom.Visible = false;
                 cbInfraestructura.Visible = true;
                 cbInfraestructura.Enabled = true;
+                pbWeb.Enabled = true;
             }
 
         }
@@ -401,7 +402,6 @@ namespace NetStruct.Formularios.Gestión
 
             try
             {
-
                 Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
                 GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
 
@@ -658,6 +658,31 @@ namespace NetStruct.Formularios.Gestión
             flpGaleria.Controls.Clear();
             listaTemporalDeImagenes.Clear();
             CargarListaGaleria();
+        }
+
+        private void pbWeb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string url = tbWeb.Text;
+
+                if (!string.IsNullOrEmpty(url))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = url,
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("No hay URL disponible para abrir.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al intentar abrir la URL: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
