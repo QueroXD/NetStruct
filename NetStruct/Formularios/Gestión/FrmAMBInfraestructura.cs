@@ -62,27 +62,36 @@ namespace NetStruct.Formularios.Gestión
                 CargarListaGaleria();
             }
 
+
             if (op == 'C')
             {
+                // Abrir el formulario maximizado
+                this.WindowState = FormWindowState.Maximized;
+
+                // Ocultar los botones de confirmar y cancelar
+                btConfirmar.Visible = false;
+                btCancelar.Visible = false;
+
                 omplirComboInfraestructura();
                 modoLectura();
                 tbNom.Visible = false;
                 cbInfraestructura.Visible = true;
                 cbInfraestructura.Enabled = true;
                 pbWeb.Enabled = true;
+                btMaps.Enabled = true;
+            }
+
+            if (op == 'B')
+            {
+                modoLectura();
+                btConfirmar.Enabled = true;
+                btCancelar.Enabled = true;
             }
 
         }
 
         private void modoLectura()
         {
-            // Abrir el formulario maximizado
-            this.WindowState = FormWindowState.Maximized;
-
-            // Ocultar los botones de confirmar y cancelar
-            btConfirmar.Visible = false;
-            btCancelar.Visible = false;
-
             // Desactivar todos los lbl, tb, cb, nup y pb
             foreach (Control c in this.Controls)
             {
@@ -382,19 +391,39 @@ namespace NetStruct.Formularios.Gestión
         private Boolean baixaInfraestructura()
         {
             Boolean xb = false;
-            Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
 
-            GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
-
-            if (infra != null && galeria != null)
+            try
             {
-                NetStructContext.Infraestructura.Remove(infra);
-                NetStructContext.GaleriaDeImagenes.Remove(galeria);
-                xb = ferCanvis();
+                Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
+
+                if (infra != null)
+                {
+                    // Obtener todas las imágenes asociadas a la infraestructura
+                    var imagenesGaleria = NetStructContext.GaleriaDeImagenes
+                        .Where(g => g.idInfraestructura == infra.idInfraestructura)
+                        .ToList();
+
+                    // Eliminar todas las imágenes asociadas
+                    if (imagenesGaleria.Any())
+                    {
+                        NetStructContext.GaleriaDeImagenes.RemoveRange(imagenesGaleria);
+                    }
+
+                    // Eliminar la infraestructura
+                    NetStructContext.Infraestructura.Remove(infra);
+
+                    // Guardar los cambios
+                    xb = ferCanvis();
+                }
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show(excp.InnerException?.ToString() ?? excp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return (xb);
+            return xb;
         }
+
 
         private Boolean modificaInfraestructura()
         {
@@ -403,10 +432,13 @@ namespace NetStruct.Formularios.Gestión
             try
             {
                 Infraestructura infra = NetStructContext.Infraestructura.Find(Convert.ToInt32(idInfraestructura));
-                GaleriaDeImagenes galeria = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura).FirstOrDefault();
+                var galeriaPrincipal = NetStructContext.GaleriaDeImagenes
+                    .Where(g => g.idInfraestructura == infra.idInfraestructura)
+                    .FirstOrDefault();
 
                 if (infra != null)
                 {
+                    // Actualizar campos básicos
                     infra.Nombre = tbNom.Text;
                     infra.Reseña = tbReseña.Text;
                     infra.MiniaturaWeb = ImageToBase64(pbWeb.Image);
@@ -419,16 +451,31 @@ namespace NetStruct.Formularios.Gestión
                     infra.Cordenadas = tbLatitud.Text + "," + tbLongitud.Text;
                     infra.idCiudad = (int)cbCiutat.SelectedValue;
 
-                    if (galeria != null)
+                    // Actualizar la imagen principal (base64Infra)
+                    if (galeriaPrincipal != null)
                     {
-                        galeria.Imagen = base64Infra;
+                        galeriaPrincipal.Imagen = base64Infra;
+                    }
+                    else if (!string.IsNullOrEmpty(base64Infra))
+                    {
+                        GaleriaDeImagenes nuevaImagenPrincipal = new GaleriaDeImagenes
+                        {
+                            Imagen = base64Infra,
+                            idInfraestructura = infra.idInfraestructura
+                        };
+                        NetStructContext.GaleriaDeImagenes.Add(nuevaImagenPrincipal);
                     }
 
-                    var imagenesExistentes = NetStructContext.GaleriaDeImagenes.Where(g => g.idInfraestructura == infra.idInfraestructura && g != galeria).ToList();
+                    // Eliminar imágenes adicionales existentes
+                    var idImagenPrincipal = galeriaPrincipal?.idImagen;
 
-                    NetStructContext.GaleriaDeImagenes.RemoveRange(imagenesExistentes);
+                    var imagenesAdicionales = NetStructContext.GaleriaDeImagenes
+                        .Where(g => g.idInfraestructura == infra.idInfraestructura && g.idImagen != idImagenPrincipal)
+                        .ToList();
 
+                    NetStructContext.GaleriaDeImagenes.RemoveRange(imagenesAdicionales);
 
+                    // Agregar nuevas imágenes desde listaTemporalDeImagenes
                     foreach (string base64Image in listaTemporalDeImagenes)
                     {
                         GaleriaDeImagenes nuevaImagen = new GaleriaDeImagenes
@@ -443,12 +490,15 @@ namespace NetStruct.Formularios.Gestión
                     xb = ferCanvis();
                     listaTemporalDeImagenes.Clear();
                 }
-            } catch (Exception excp)
+            }
+            catch (Exception excp)
             {
                 MessageBox.Show(excp.InnerException?.ToString() ?? excp.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return (xb);
+
+            return xb;
         }
+
 
         private Boolean ferCanvis()
         {

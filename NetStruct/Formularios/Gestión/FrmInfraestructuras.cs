@@ -237,11 +237,6 @@ namespace NetStruct.Formularios.Gestión
             {
                 getDadesAmbFiltre((int)cbContinents.SelectedValue, (int)cbPaises.SelectedValue);
             }
-
-            if (fAMBInfraestructura.idInfraestructura != "")
-            {
-                seleccionarFila(fAMBInfraestructura.idInfraestructura);
-            }
         }
 
         private void dgDadesInfra_DoubleClick(object sender, EventArgs e)
